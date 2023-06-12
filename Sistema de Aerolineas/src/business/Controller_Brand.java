@@ -7,25 +7,25 @@ import javax.swing.JOptionPane;
 
 import data.FilesXML;
 import domain.Brand;
-import domain.Path;
 import presentation.GUI_Brand;
 
 public class Controller_Brand implements ActionListener{
 
-	private Path path;
+	//private Path path;
 	
 	private GUI_Brand gui;
 	private FilesXML fXML;
-	private Brand branch;
+	private Brand brand;
+	//private String path= "C:\\Users\\yeile\\git\\ProyectoAerolineas\\Sistema de Aerolineas\\";
 	
 	public Controller_Brand() {
 		
 		gui= new GUI_Brand();
 		fXML= new FilesXML();
-		path= new Path();
+		//path= new Path();
 		
 		//Indica el path donde se crea o crearan los archivos.
-		fXML.createXML("Branch",path.getPath()+"Branch.xml");
+		fXML.createXML("Brand","Brand.xml");
 //		
 		initializer();
 	}
@@ -42,8 +42,8 @@ public class Controller_Brand implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==gui.getBAgregar()) {
 			//agregar avion al xml
-			branch= new Brand(gui.getTxtNombre().getText());
-			fXML.writeXML(path.getPath()+"Branch.xml", "Marca", branch.getDataName(), branch.getData());
+			brand= new Brand(gui.getTxtNombre().getText());
+			fXML.writeXML("Brand.xml", "Marca", brand.getDataName(), brand.getData());
 			JOptionPane.showMessageDialog(null, "Se agrego la marca al xml");
 		}
 		if (e.getSource()==gui.getBModificar()) {
