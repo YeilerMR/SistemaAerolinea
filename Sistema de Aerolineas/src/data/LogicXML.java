@@ -55,5 +55,14 @@ public class LogicXML extends FilesXML {
             writeXML("Users.xml", "Users", user.getDataName(), user.getData());
         }
     }
+    
+    public boolean checkTypeUser(User user) {
+    	boolean valid= false;
+    	if (user.getType().equals(" Administrador")) {
+			valid= true;
+			System.out.println("Entro al Metodo para checar el usuario");
+		}
+    	return valid;
+    }
 
 }

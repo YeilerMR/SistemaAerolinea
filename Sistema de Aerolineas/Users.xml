@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Users>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Users>
 	<Users user="admin">
 		<password>admin</password>
 		<type> Administrador</type>
@@ -10,4 +9,4 @@
 		<type> Administrador</type>
 		<state> Activo</state>
 	</Users>
-</Users>
+<Users user="Pedro"><password>colab</password><type> Colaborador</type><state> Activo</state></Users></Users>

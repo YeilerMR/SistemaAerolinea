@@ -72,7 +72,7 @@ public class ControllerLogIn implements ActionListener {
 				} else {
 					JOptionPane.showMessageDialog(null, "El usuario está inactivo.");
 				}
-				new Controller_Main();
+				new Controller_Main(user);
 				//logIn.dispose();
 			} else {
 				JOptionPane.showMessageDialog(null, "El usuario o la contraseña son incorrectos.");

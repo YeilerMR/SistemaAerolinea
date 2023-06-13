@@ -5,17 +5,26 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import data.LogicXML;
+import domain.Brand;
+import domain.User;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
-public class GUI_Brand extends JFrame implements ActionListener{
+public class GUI_Brand extends JFrame{
 
 	private JPanel contentPane;
 	private JLabel lNombre;
@@ -25,8 +34,16 @@ public class GUI_Brand extends JFrame implements ActionListener{
 	private JButton bModificar;
 	private JButton bEliminar;
 	private JButton bConsultar;
-	private JButton btnExit;
-
+	
+	private DefaultTableModel dtmBrand;
+	private JScrollPane scpBrand;
+	private JTable tBrand;
+	
+	private String [][]dataBrands;
+	private String []columnName= {"Nombres"};
+	
+	private User user;
+	private LogicXML lXML;
 	/**
 	 * Launch the application.
 	 */
@@ -34,22 +51,37 @@ public class GUI_Brand extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public GUI_Brand() {
+	public GUI_Brand(User user,LogicXML lXML) {
+		
+		this.user= user;
+		this.lXML= lXML;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 567, 421);
+		setBounds(100, 100, 567, 603);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
+		
+		if (lXML.checkTypeUser(user)) {
+			System.out.println(user.toString());
+			contentPane.add(getBModificar());
+			contentPane.add(getBEliminar());
+		}
+		
+		setDTMBrand(dataBrands,columnName);
+		setTBrand(dtmBrand);
+		setSCPBrand(tBrand);
+		
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		contentPane.add(getLNombre());
 		contentPane.add(getTxtNombre());
 		contentPane.add(getLGestionM());
 		contentPane.add(getBAgregar());
-		contentPane.add(getBModificar());
-		contentPane.add(getBEliminar());
+		
+		
 		contentPane.add(getBConsultar());
-		contentPane.add(getBtnExit());
+		contentPane.add(getScpBrand());
 		setVisible(true);
 	}
 
@@ -86,20 +118,15 @@ public class GUI_Brand extends JFrame implements ActionListener{
 		return bAgregar;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 	public JButton getBModificar() {
-		if (bModificar == null) {
-			bModificar = new JButton("Modificar");
-			bModificar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			bModificar.setBounds(187, 156, 119, 30);
-		}
+		bModificar = new JButton("Modificar");
+		bModificar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		bModificar.setBounds(187, 156, 119, 30);
+		
 		return bModificar;
 	}
 	public JButton getBEliminar() {
+		
 		if (bEliminar == null) {
 			bEliminar = new JButton("Eliminar");
 			bEliminar.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -115,14 +142,6 @@ public class GUI_Brand extends JFrame implements ActionListener{
 		}
 		return bConsultar;
 	}
-	public JButton getBtnExit() {
-		if (btnExit == null) {
-			btnExit = new JButton("Salir");
-			btnExit.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnExit.setBounds(398, 325, 119, 30);
-		}
-		return btnExit;
-	}
 	
 	
 	public void clearForm() {
@@ -132,5 +151,40 @@ public class GUI_Brand extends JFrame implements ActionListener{
 	public void showMessage(String message) {
 
 		JOptionPane.showMessageDialog(null, message);
+	}
+	//---------------------------------------------------------------------------------------
+	public void setDTMBrand(String [][]dataBrands, String[] columnName) {
+		dtmBrand= new DefaultTableModel(dataBrands, columnName);
+		
+	}
+	public DefaultTableModel getDTMBrand() {
+		return this.dtmBrand;
+	}
+	//---------------------------------------------------------------------------------------
+	
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void setSCPBrand(JTable tBrand) {
+		
+		scpBrand = new JScrollPane(tBrand);
+		scpBrand.setBounds(187, 324, 131, 206);
+		scpBrand.setViewportView(getTBrand());
+		
+	}
+	public JScrollPane getScpBrand() {
+		
+		return this.scpBrand;
+	}
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void setTBrand(DefaultTableModel dtmBrand) {
+		
+		tBrand= new JTable(dtmBrand);
+		tBrand.setEnabled(false);
+		tBrand.getTableHeader().setReorderingAllowed(false);
+		tBrand.getTableHeader().setResizingAllowed(false);
+		
+	}
+	public JTable getTBrand() {
+		
+		return this.tBrand;
 	}
 }

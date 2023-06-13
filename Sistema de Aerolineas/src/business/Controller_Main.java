@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import domain.User;
 import presentation.GUI_Brand;
 import presentation.GUI_Main;
 
@@ -16,7 +17,12 @@ public class Controller_Main implements ActionListener{
 	private Controller_Brand cBrand;
 	private Controller_Model cModel;
 	
-	public Controller_Main(){
+	private User user;
+	
+	public Controller_Main(User user){
+		
+		this.user= user;
+		System.out.println(user.getType());
 		gui_M= new GUI_Main();
 
 		initializer();
@@ -34,7 +40,7 @@ public class Controller_Main implements ActionListener{
 		if(e.getSource()==gui_M.getBtnMbrand()) {
 			//abre la pestaña GUI_Brand;
 			JOptionPane.showMessageDialog(null, "Si entra al if");
-			cBrand= new Controller_Brand();
+			cBrand= new Controller_Brand(user);
 		}
 		if (e.getSource()==gui_M.getBtnMModel()) {
 			//Abre la pestaña GUI_Model;
