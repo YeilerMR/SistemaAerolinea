@@ -3,17 +3,21 @@ package business;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import data.LogicXML;
 import domain.Model;
+import domain.User;
 import presentation.GUI_Model;
 
 public class Controller_Model implements ActionListener{
 
 	private Model model;
 	private GUI_Model gui;
+	private LogicXML lXml;
 	
 	
-	public Controller_Model() {
-		gui= new GUI_Model();
+	public Controller_Model(User user) {
+		lXml= new LogicXML();
+		gui= new GUI_Model(user);
 		
 		initializer();
 	}
@@ -27,6 +31,7 @@ public class Controller_Model implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==gui.getBAdd()) {
+			//Agregar un modelo
 			model= new Model();
 		}
 		if(e.getSource()==gui.getBModify()) {

@@ -64,5 +64,6 @@ public class LogicXML extends FilesXML {
 		}
     	return valid;
     }
+   
 
 }

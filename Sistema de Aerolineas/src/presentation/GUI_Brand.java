@@ -40,7 +40,7 @@ public class GUI_Brand extends JFrame{
 	private JTable tBrand;
 	
 	private String [][]dataBrands;
-	private String []columnName= {"Nombres"};
+	public String []columnName= {"Nombres"};
 	
 	private User user;
 	private LogicXML lXML;
@@ -51,10 +51,11 @@ public class GUI_Brand extends JFrame{
 	/**
 	 * Create the frame.
 	 */
-	public GUI_Brand(User user,LogicXML lXML) {
+	public GUI_Brand(User user) {
 		
 		this.user= user;
-		this.lXML= lXML;
+		this.lXML= new LogicXML();
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 567, 603);
 		contentPane = new JPanel();

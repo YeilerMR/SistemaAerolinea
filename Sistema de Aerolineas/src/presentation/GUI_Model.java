@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import data.LogicXML;
+import domain.User;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -30,6 +34,8 @@ public class GUI_Model extends JFrame implements ActionListener{
 	private JTextField txtBClass;
 	private JTextField txtTClass;
 	private JTextField txtEconomic;
+	
+	private LogicXML lXML;
 
 	/**
 	 * Launch the application.
@@ -38,11 +44,19 @@ public class GUI_Model extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public GUI_Model() {
+	public GUI_Model(User user) {
+		
+		lXML= new LogicXML();
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 569, 542);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		if (lXML.checkTypeUser(user)) {
+			contentPane.add(getBModify());
+			contentPane.add(getBDelete());
+		}
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -50,8 +64,7 @@ public class GUI_Model extends JFrame implements ActionListener{
 		contentPane.add(getTxtNombre());
 		contentPane.add(getLGestionM());
 		contentPane.add(getBAdd());
-		contentPane.add(getBModify());
-		contentPane.add(getBDelete());
+		
 		contentPane.add(getBConsult());
 		contentPane.add(getLBrands());
 		contentPane.add(getLseatsBClass());

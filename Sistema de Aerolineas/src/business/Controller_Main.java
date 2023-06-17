@@ -44,7 +44,8 @@ public class Controller_Main implements ActionListener{
 		}
 		if (e.getSource()==gui_M.getBtnMModel()) {
 			//Abre la pestaña GUI_Model;
-			cModel= new Controller_Model();
+
+			cModel= new Controller_Model(user);
 			JOptionPane.showMessageDialog(null, "Entra a models");
 		}
 		if(e.getSource()== gui_M.getBtnMAirline()) {
