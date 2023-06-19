@@ -5,17 +5,22 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import data.LogicXML;
 import domain.User;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class GUI_Model extends JFrame implements ActionListener{
 
@@ -23,19 +28,33 @@ public class GUI_Model extends JFrame implements ActionListener{
 	private JLabel lNombre;
 	private JTextField txtNombre;
 	private JLabel lGestionM;
+	
 	private JButton bAdd;
 	private JButton bModify;
 	private JButton bDelete;
 	private JButton bConsult;
+	
 	private JLabel lBrands;
 	private JLabel lseatsBClass;
 	private JLabel lseatsTClass;
 	private JLabel lseatsEconomic;
+	private JLabel lInfo;
+	
+	//bussiness class
 	private JTextField txtBClass;
+	//turist class
 	private JTextField txtTClass;
+	//economic class
 	private JTextField txtEconomic;
 	
 	private LogicXML lXML;
+	
+	private DefaultTableModel dtmModel;
+	private JScrollPane scpModel;
+	private JTable tModel;
+	
+	private String [][] dataModels;
+	public String []columnName;
 
 	/**
 	 * Launch the application.
@@ -49,7 +68,7 @@ public class GUI_Model extends JFrame implements ActionListener{
 		lXML= new LogicXML();
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 569, 542);
+		setBounds(100, 100, 868, 542);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
@@ -58,6 +77,10 @@ public class GUI_Model extends JFrame implements ActionListener{
 			contentPane.add(getBDelete());
 		}
 
+		setDTMModel(dataModels,columnName);
+		setTModel(dtmModel);
+		setSCPModel(tModel);
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		contentPane.add(getLNombre());
@@ -73,6 +96,8 @@ public class GUI_Model extends JFrame implements ActionListener{
 		contentPane.add(getTxtBClass());
 		contentPane.add(getTxtTClass());
 		contentPane.add(getTxtEconomic());
+		contentPane.add(getSCPModel());
+		contentPane.add(getLInfo());
 		setVisible(true);
 	}
 
@@ -199,5 +224,57 @@ public class GUI_Model extends JFrame implements ActionListener{
 			txtEconomic.setBounds(295, 298, 119, 45);
 		}
 		return txtEconomic;
+	}
+
+	public JLabel getLInfo() {
+		if (lInfo == null) {
+			lInfo = new JLabel("Informacion");
+			lInfo.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lInfo.setBounds(592, 78, 106, 45);
+		}
+		return lInfo;
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void clearForm() {
+		txtNombre.setText("");
+		txtBClass.setText("");
+		txtTClass.setText("");
+		txtEconomic.setText("");
+	}//limpia formulario
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void showMessage(String message) {
+		JOptionPane.showMessageDialog(null, message);
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void setDTMModel(String[][]dataModels,String[]columnName) {
+		dtmModel= new DefaultTableModel(dataModels,columnName);
+	}
+	public DefaultTableModel getDTMModel() {
+		return this.dtmModel;
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void setSCPModel(JTable jModel) {
+		scpModel = new JScrollPane();
+		scpModel.setBounds(475, 149, 340, 193);
+		scpModel.setViewportView(getTModel());
+	}
+	public JScrollPane getSCPModel() {
+		return this.scpModel;
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void setTModel(DefaultTableModel dtmModel) {
+		tModel= new JTable(dtmModel);
+		tModel.setEnabled(true);
+		tModel.getTableHeader().setReorderingAllowed(false);
+		tModel.getTableHeader().setResizingAllowed(false);
+	}
+	public JTable getTModel() {
+		return this.tModel;
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public String[]getColumnsName(){
+		String columnsName[]= {"Nombre","Marca","C. Ejecutiva",
+								"C. Turista","C. Económico"};
+		return columnsName;
 	}
 }

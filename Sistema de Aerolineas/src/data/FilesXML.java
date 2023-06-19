@@ -31,10 +31,11 @@ import org.w3c.dom.Element;
 public class FilesXML {
 
 	public FilesXML() {}
+	
  
 	public void createXML(String objectName,String fileName) {
 
-		File file = new File(fileName);
+		File file= new File(fileName);
 
 		if(!file.exists()) {
 			try {
@@ -86,7 +87,6 @@ public class FilesXML {
 				//Agregue el if para saber cuando hay un valor y cuando no.
 				
 				dato.appendChild(doc.createTextNode(data[i]));
-
 				ele.appendChild(dato);
 				
 			}
@@ -273,46 +273,43 @@ public User getUserInfo(String FileName, String elementType, String userId) {
 //		e.printStackTrace();
 //	}
 //}
-
-
-
-
-public ArrayList<Brand> readXMLToArrayList(String address, String elementType, String data) {
-
-	ArrayList<Brand> arrayBrands;
-	arrayBrands = new ArrayList<Brand>();
-
-	Brand brand = new Brand();
-
-	try {
-		File inputFile = new File(address);
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-		Document doc = dBuilder.parse(inputFile);
-		doc.getDocumentElement().normalize();
-
-		NodeList nList = doc.getElementsByTagName(elementType);
-		
-		for (int indice = 0; indice < nList.getLength(); indice++) {
-			Node nNode = nList.item(indice);
-			//System.out.println("\nDatos de las Facturas: " + nNode.getNodeName());
-
-			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-				
-				Element eElement = (Element) nNode;
-
-				
-				brand= new Brand(eElement.getAttribute("name"));
-				arrayBrands.add(brand);
-
-				
-			}
-		}
-	} catch (Exception e) {
-		e.printStackTrace();
-	}
-	return arrayBrands;
-}
+//
+//public ArrayList<Brand> readXMLToArrayList(String address, String elementType, String data) {
+//
+//	ArrayList<Brand> arrayBrands;
+//	arrayBrands = new ArrayList<Brand>();
+//
+//	Brand brand = new Brand();
+//
+//	try {
+//		File inputFile = new File(address);
+//		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+//		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+//		Document doc = dBuilder.parse(inputFile);
+//		doc.getDocumentElement().normalize();
+//
+//		NodeList nList = doc.getElementsByTagName(elementType);
+//		
+//		for (int indice = 0; indice < nList.getLength(); indice++) {
+//			Node nNode = nList.item(indice);
+//			//System.out.println("\nDatos de las Facturas: " + nNode.getNodeName());
+//
+//			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+//				
+//				Element eElement = (Element) nNode;
+//
+//				
+//				brand= new Brand(eElement.getAttribute("name"));
+//				arrayBrands.add(brand);
+//
+//				
+//			}
+//		}
+//	} catch (Exception e) {
+//		e.printStackTrace();
+//	}
+//	return arrayBrands;
+//}
 
 
 

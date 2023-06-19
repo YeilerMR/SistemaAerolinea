@@ -44,6 +44,8 @@ public class GUI_Brand extends JFrame{
 	
 	private User user;
 	private LogicXML lXML;
+	private JTextField txtNew;
+	private JLabel lNuevo;
 	/**
 	 * Launch the application.
 	 */
@@ -63,9 +65,12 @@ public class GUI_Brand extends JFrame{
 
 		
 		if (lXML.checkTypeUser(user)) {
+			
 			System.out.println(user.toString());
 			contentPane.add(getBModificar());
 			contentPane.add(getBEliminar());
+			contentPane.add(getTxtNew());
+			contentPane.add(getLNuevo());
 		}
 		
 		setDTMBrand(dataBrands,columnName);
@@ -83,6 +88,7 @@ public class GUI_Brand extends JFrame{
 		
 		contentPane.add(getBConsultar());
 		contentPane.add(getScpBrand());
+		
 		setVisible(true);
 	}
 
@@ -97,7 +103,7 @@ public class GUI_Brand extends JFrame{
 	public JTextField getTxtNombre() {
 		if (txtNombre == null) {
 			txtNombre = new JTextField();
-			txtNombre.setBounds(295, 78, 119, 45);
+			txtNombre.setBounds(151, 80, 119, 45);
 			txtNombre.setColumns(10);
 		}
 		return txtNombre;
@@ -120,10 +126,11 @@ public class GUI_Brand extends JFrame{
 	}
 
 	public JButton getBModificar() {
-		bModificar = new JButton("Modificar");
-		bModificar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		bModificar.setBounds(187, 156, 119, 30);
-		
+		if (bAgregar==null) {
+			bModificar = new JButton("Modificar");
+			bModificar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			bModificar.setBounds(187, 156, 119, 30);
+		}
 		return bModificar;
 	}
 	public JButton getBEliminar() {
@@ -147,6 +154,7 @@ public class GUI_Brand extends JFrame{
 	
 	public void clearForm() {
 		txtNombre.setText("");
+		txtNew.setText("");
 	}
 	
 	public void showMessage(String message) {
@@ -187,5 +195,21 @@ public class GUI_Brand extends JFrame{
 	public JTable getTBrand() {
 		
 		return this.tBrand;
+	}
+	public JTextField getTxtNew() {
+		if (txtNew == null) {
+			txtNew = new JTextField();
+			txtNew.setColumns(10);
+			txtNew.setBounds(424, 78, 119, 45);
+		}
+		return txtNew;
+	}
+	public JLabel getLNuevo() {
+		if (lNuevo == null) {
+			lNuevo = new JLabel("Nuevo:");
+			lNuevo.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lNuevo.setBounds(325, 78, 89, 45);
+		}
+		return lNuevo;
 	}
 }

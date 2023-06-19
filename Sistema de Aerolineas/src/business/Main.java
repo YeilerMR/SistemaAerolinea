@@ -9,6 +9,7 @@ public class Main {
 		//new Controller_Main();
 		
 		new Controller();
+		
 	}
 
 }

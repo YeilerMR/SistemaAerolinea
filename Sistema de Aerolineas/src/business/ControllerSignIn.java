@@ -80,7 +80,7 @@ private void createOrUpdateUser(boolean isUpdate) {
 		}
 	}
 
-	private void searchUser() {
+	private void searchUser() {			//FilePath	//elementType //data
 		User user = filesXML.getUserInfo("Users.xml", "Users", signIn.getTfUser().getText());
 		if (user != null) {
 			signIn.getTfUser().setText(user.getUser());

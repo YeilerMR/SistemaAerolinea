@@ -32,7 +32,7 @@ public class Controller_Model implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==gui.getBAdd()) {
 			//Agregar un modelo
-			model= new Model();
+			//model= new Model();
 		}
 		if(e.getSource()==gui.getBModify()) {
 			

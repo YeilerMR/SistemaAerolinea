@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Model {
 	
 	private String name;
-	private ArrayList<Brand> arrayBrands;
+	private String brand;
 	private int seatsBClass;
 	private int seatsTClass;
 	private int seatsEconomics;
@@ -14,10 +14,10 @@ public class Model {
 		
 	}
 	
-	public Model(String name, ArrayList<Brand> arrayBrands, int seatsBClass, int seatsTClass, int seatsEconomics) {
+	public Model(String name, String brand, int seatsBClass, int seatsTClass, int seatsEconomics) {
 		//super();
 		this.name = name;
-		this.arrayBrands = arrayBrands;
+		this.brand = brand;
 		this.seatsBClass = seatsBClass;
 		this.seatsTClass = seatsTClass;
 		this.seatsEconomics = seatsEconomics;
@@ -31,12 +31,12 @@ public class Model {
 		this.name = name;
 	}
 
-	public ArrayList<Brand> getArrayBrands() {
-		return arrayBrands;
+	public String getArrayBrands() {
+		return brand;
 	}
 
-	public void setArrayBrands(ArrayList<Brand> arrayBrands) {
-		this.arrayBrands = arrayBrands;
+	public void setArrayBrands(String brand) {
+		this.brand = brand;
 	}
 
 	public int getSeatsBClass() {
@@ -62,7 +62,20 @@ public class Model {
 	public void setSeatsEconomics(int seatsEconomics) {
 		this.seatsEconomics = seatsEconomics;
 	}
-	
+	public String[] getDataName() {
+		String[] dataName= {"name","brand","bClass","tClass","eClass"};
+		return dataName;
+	}
+	public String[] getData() {
+		//Debo agregar el array de brand
+		String[] data= {name,String.valueOf(seatsBClass),String.valueOf(seatsTClass),String.valueOf(seatsEconomics)};
+		return data;
+	}
 	//Falta el toString
-	
-}
+
+	@Override
+	public String toString() {
+		return "Model [name=" + name + ", arrayBrands=" + brand + ", seatsBClass=" + seatsBClass
+				+ ", seatsTClass=" + seatsTClass + ", seatsEconomics=" + seatsEconomics + "]";
+	}
+}//Fin de Model

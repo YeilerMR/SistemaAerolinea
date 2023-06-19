@@ -7,8 +7,9 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
-import data.ConnectionBrand;
+//import data.ConnectionBrand;
 import data.FilesXML;
+import data.FilesXMLBrand;
 import data.LogicXML;
 import domain.Brand;
 import domain.User;
@@ -19,23 +20,24 @@ public class Controller_Brand implements ActionListener{
 	//private Path path;
 	
 	private GUI_Brand gui;
-	private FilesXML fXML;
-	private ConnectionBrand connectBrand;
+	
+	//private FilesXML fXML;
+	private FilesXMLBrand fXMLBrand;
+	//private ConnectionBrand connectBrand;
 	private Brand brand;
 	String dataTXT;
-	//private User user;
+
 	
 	final String nameFile= "Brand.xml";
 	private ArrayList<Brand> arrayBrands;
-	//private ArrayList<Brand> arrayAuxi;
+	
 	
 	public Controller_Brand(User user) {
 		
+		fXMLBrand= new FilesXMLBrand();
+		fXMLBrand.createXML("Brand", nameFile);
 		
-		fXML= new FilesXML();
-		fXML.createXML("Brand",nameFile);
-		connectBrand= new ConnectionBrand();
-		
+		//connectBrand= new ConnectionBrand();
 		
 		gui= new GUI_Brand(user);
 		brand= new Brand(gui.getTxtNombre().getText());
@@ -55,71 +57,25 @@ public class Controller_Brand implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource()==gui.getBAgregar()) {
-			
 			//LISTO EL MODULO AGREGAR
-			String dataTXT= gui.getTxtNombre().getText();
-			if (isEmpty(dataTXT)) {
-				gui.showMessage("No puede dejar el espacio 'Nombre' en blanco");
-			}else {
-				
-				if(connectBrand.checkExists(nameFile,dataTXT)) {
-					gui.showMessage("Ya existe una marca con este nombre");
-				}else {
-						brand= new Brand(gui.getTxtNombre().getText());
-						fXML.writeXML(nameFile, "Marca", brand.getDataName(), brand.getData());
-						gui.clearForm();
-						gui.showMessage("Se agrego una marca exitosamente");
-					
-					
-				}
-			}
+			addBrand();
 		}
 		if (e.getSource()==gui.getBModificar()) {
-			//EN PROCESO
-			gui.showMessage("Modificar");
+			//LISTO EL MODULO MODIFICAR
+			updateBrand();
+			
 		}
 		if (e.getSource()==gui.getBConsultar()) {
-			
 			//LISTO EL MODULO CONSULTAR
-			String dataTXT=gui.getTxtNombre().getText();
-			arrayBrands= fXML.readXMLToArrayList(nameFile, "Marca", dataTXT);
-			
-			connectBrand.setDataMatrixBrand(arrayBrands);
-			if (isEmpty(dataTXT)) {
-				
-				gui.getDTMBrand().setDataVector(connectBrand.getDataMatrixBrand(), gui.columnName);
-			}else {
-				//System.out.println("Data en el if del boton"+dataTXT);
-				arrayBrands= connectBrand.readBrand(arrayBrands, dataTXT);
-				connectBrand.setDataMatrixBrand(arrayBrands);
-				gui.getDTMBrand().setDataVector(connectBrand.getDataMatrixBrand(), gui.columnName);
-				gui.clearForm();
-			}
-	
+			consultBrands();
 		}
 		if (e.getSource()==gui.getBEliminar()) {
-			
-			//EN PROCESO
-			String dataTXT=gui.getTxtNombre().getText();
-			arrayBrands= fXML.readXMLToArrayList(nameFile, "Marca", dataTXT);
-
-			connectBrand.deleteBrand(arrayBrands, dataTXT);
-			
-			//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//			String dataTXT=gui.getTxtNombre().getText();
-//			arrayBrands= fXML.readXMLToArrayList(nameFile, "Marca", dataTXT);
-//			
-//			gui.showMessage(connectBrand.deleteBrand(arrayBrands, dataTXT));
-//			
-//			fXML.createXML("Brand",nameFile);
-//			
-//			
-//			gui.getDTMBrand().setDataVector(connectBrand.getDataMatrixBrand(), gui.columnName);
-			
+			//LISTO EL MODULO ELIMINAR!!!
+			deleteBrand();
 		}
 		
 	}
-	
+	//Verifica si el jtext esta vacio
 	public boolean isEmpty(String text) {
 		boolean valid;
 		
@@ -129,11 +85,82 @@ public class Controller_Brand implements ActionListener{
 			valid= false;
 		}
 		return valid;
-	}
+	}//fin de isEmpty
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	//imprime la lista de marcas del xml
 	public void array(ArrayList<Brand> array) {
 		for (int i = 0; i < array.size(); i++) {
 			System.out.println("\n"+array.get(i).getNombre());
 		}
+	}//fin de array
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	//Agrega una marca al xml
+	private void addBrand() {
+		String dataTXT= gui.getTxtNombre().getText();
+		if (isEmpty(dataTXT)) {
+			gui.showMessage("No puede dejar el espacio 'Nombre' en blanco");
+		}else {
+			//Hasta Aqui todo bien.
+			
+			if(fXMLBrand.checkExists(nameFile,dataTXT)) {
+				gui.showMessage("Ya existe una marca con este nombre");
+			}else {
+				
+					brand= new Brand(gui.getTxtNombre().getText());
+					fXMLBrand.writeXML(nameFile, "Marca", brand.getDataName(), brand.getData());
+					gui.clearForm();
+					gui.showMessage("Se agrego una marca exitosamente");
+			}
+		}
+	}//fin de addBrand
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	private void updateBrand() {
+		String dataTXT= gui.getTxtNombre().getText();
+		String dataNew= gui.getTxtNew().getText();
+		System.out.println("\n\nEntro al metodo modificar");
+		if (isEmpty(dataTXT) || isEmpty(dataNew)) {
+			gui.showMessage("No puede dejar el espacio 'Nombre' en blanco y el espacio 'Nuevo'");
+		}else {
+			if (fXMLBrand.checkExists(nameFile, dataTXT)) {
+				//System.out.println("Entra al if y no hay datos en el brand"+brand.getNombre());
+				brand= new Brand(dataNew);
+				System.out.println("Desde el vector: "+brand.getData()[0]);
+				fXMLBrand.updateBrand(nameFile, "Marca", brand.getDataName(), brand.getData(), dataTXT);
+				gui.clearForm();
+			}else {
+				gui.showMessage("No hay una marca ["+dataTXT+"] registrada");
+			}
+		}
 	}
-
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	//Imprime las marcas en una tabla
+	private void consultBrands() {
+		String dataTXT=gui.getTxtNombre().getText();
+		arrayBrands= fXMLBrand.readXMLToArrayList(nameFile, "Marca", dataTXT);
+		
+		fXMLBrand.setDataMatrixBrand(arrayBrands);
+		if (isEmpty(dataTXT)) {
+			
+			gui.getDTMBrand().setDataVector(fXMLBrand.getDataMatrixBrand(), gui.columnName);
+		}else {
+			
+			arrayBrands= fXMLBrand.readBrand(arrayBrands, dataTXT);
+			fXMLBrand.setDataMatrixBrand(arrayBrands);
+			gui.getDTMBrand().setDataVector(fXMLBrand.getDataMatrixBrand(), gui.columnName);
+			gui.clearForm();
+		}
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	//Elimina una marca del xml
+	private void deleteBrand() {
+		String dataTXT= gui.getTxtNombre().getText();
+		if (fXMLBrand.checkExists(nameFile, gui.getTxtNombre().getText())) {
+			fXMLBrand.deleteBrand(nameFile, "Marca", dataTXT);
+			gui.showMessage("Se elimino la marca ["+dataTXT+"] Correctamente");
+			gui.clearForm();
+		}else {
+			gui.showMessage("No se encontro la marca ["+dataTXT+"]");
+		}
+		
+	}
 }
