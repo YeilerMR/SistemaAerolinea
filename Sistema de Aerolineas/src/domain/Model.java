@@ -68,7 +68,7 @@ public class Model {
 	}
 	public String[] getData() {
 		//Debo agregar el array de brand
-		String[] data= {name,String.valueOf(seatsBClass),String.valueOf(seatsTClass),String.valueOf(seatsEconomics)};
+		String[] data= {name,brand,String.valueOf(seatsBClass),String.valueOf(seatsTClass),String.valueOf(seatsEconomics)};
 		return data;
 	}
 	//Falta el toString

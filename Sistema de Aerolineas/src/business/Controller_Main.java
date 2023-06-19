@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import data.FileXMLModel;
+import data.FilesXMLBrand;
 import domain.User;
 import presentation.GUI_Brand;
 import presentation.GUI_Main;
@@ -17,6 +19,9 @@ public class Controller_Main implements ActionListener{
 	private Controller_Brand cBrand;
 	private Controller_Model cModel;
 	
+	private FilesXMLBrand fXMLBrand;
+	private FileXMLModel fXMLModel;
+	
 	private User user;
 	
 	public Controller_Main(User user){
@@ -25,6 +30,13 @@ public class Controller_Main implements ActionListener{
 		System.out.println(user.getType());
 		gui_M= new GUI_Main();
 
+		//Crea el archivo Brand.xml
+		fXMLBrand= new FilesXMLBrand();
+		fXMLBrand.createXML("Brand", "Brand.xml");
+		
+		//Crea el archivo Model.xml
+		fXMLModel= new FileXMLModel();
+		fXMLModel.createXML("Model", "Model.xml");
 		initializer();
 	}
 	
@@ -39,8 +51,8 @@ public class Controller_Main implements ActionListener{
 		
 		if(e.getSource()==gui_M.getBtnMbrand()) {
 			//abre la pestaña GUI_Brand;
-			JOptionPane.showMessageDialog(null, "Si entra al if");
-			cBrand= new Controller_Brand(user);
+			//JOptionPane.showMessageDialog(null, "Si entra al if");
+			cBrand= new Controller_Brand(user,fXMLBrand,fXMLModel);
 		}
 		if (e.getSource()==gui_M.getBtnMModel()) {
 			//Abre la pestaña GUI_Model;

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Model>
+	<Modelo name="Boing">
+		<brand>Brand</brand>
+		<bClass>50</bClass>
+		<tClass>50</tClass>
+		<eClass>50</eClass>
+	</Modelo>
+	<Modelo name="Airbus">
+		<brand>Brand</brand>
+		<bClass>90</bClass>
+		<tClass>90</tClass>
+		<eClass>90</eClass>
+	</Modelo>
+</Model>

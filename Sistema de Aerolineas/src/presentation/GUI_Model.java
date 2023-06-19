@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JComboBox;
 
 public class GUI_Model extends JFrame implements ActionListener{
 
@@ -54,7 +55,8 @@ public class GUI_Model extends JFrame implements ActionListener{
 	private JTable tModel;
 	
 	private String [][] dataModels;
-	public String []columnName;
+	//public String []columnName;
+	private JComboBox comboBox;
 
 	/**
 	 * Launch the application.
@@ -77,7 +79,7 @@ public class GUI_Model extends JFrame implements ActionListener{
 			contentPane.add(getBDelete());
 		}
 
-		setDTMModel(dataModels,columnName);
+		setDTMModel(dataModels,getColumnsName());
 		setTModel(dtmModel);
 		setSCPModel(tModel);
 		
@@ -98,6 +100,7 @@ public class GUI_Model extends JFrame implements ActionListener{
 		contentPane.add(getTxtEconomic());
 		contentPane.add(getSCPModel());
 		contentPane.add(getLInfo());
+		//contentPane.add(getComboBox());
 		setVisible(true);
 	}
 
@@ -247,6 +250,7 @@ public class GUI_Model extends JFrame implements ActionListener{
 	}
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public void setDTMModel(String[][]dataModels,String[]columnName) {
+		
 		dtmModel= new DefaultTableModel(dataModels,columnName);
 	}
 	public DefaultTableModel getDTMModel() {
@@ -254,7 +258,8 @@ public class GUI_Model extends JFrame implements ActionListener{
 	}
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public void setSCPModel(JTable jModel) {
-		scpModel = new JScrollPane();
+		
+		scpModel = new JScrollPane(jModel);
 		scpModel.setBounds(475, 149, 340, 193);
 		scpModel.setViewportView(getTModel());
 	}
@@ -264,7 +269,7 @@ public class GUI_Model extends JFrame implements ActionListener{
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public void setTModel(DefaultTableModel dtmModel) {
 		tModel= new JTable(dtmModel);
-		tModel.setEnabled(true);
+		tModel.setEnabled(false);
 		tModel.getTableHeader().setReorderingAllowed(false);
 		tModel.getTableHeader().setResizingAllowed(false);
 	}
@@ -276,5 +281,12 @@ public class GUI_Model extends JFrame implements ActionListener{
 		String columnsName[]= {"Nombre","Marca","C. Ejecutiva",
 								"C. Turista","C. Económico"};
 		return columnsName;
+	}
+	public JComboBox getComboBox() {
+		if (comboBox == null) {
+			comboBox = new JComboBox();
+			comboBox.setBounds(295, 133, 119, 30);
+		}
+		return comboBox;
 	}
 }

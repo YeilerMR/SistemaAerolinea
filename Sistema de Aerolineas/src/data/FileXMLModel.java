@@ -27,7 +27,7 @@ import domain.Model;
 public class FileXMLModel {
 
 	private Model model;
-	private String data[][];
+	private Object data[][];
 	public FileXMLModel() {}
 
 	public void createXML(String objectName,String fileName) {
@@ -241,7 +241,7 @@ public class FileXMLModel {
             
             doc.getDocumentElement().normalize();
 
-            NodeList nodeList = doc.getElementsByTagName("Marca");
+            NodeList nodeList = doc.getElementsByTagName("Modelo");
 
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node node = nodeList.item(i);
@@ -263,6 +263,40 @@ public class FileXMLModel {
 
         return false;
     }//Fin checkExist
+	
+	public boolean checkExistsBrand(String fileName, String name) {
+		try {
+			System.out.println("Entro al metodo checkExists");
+			File inputFile = new File(fileName);
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(inputFile);
+			
+			
+			doc.getDocumentElement().normalize();
+			
+			NodeList nodeList = doc.getElementsByTagName("Modelo");
+			
+			for (int i = 0; i < nodeList.getLength(); i++) {
+				Node node = nodeList.item(i);
+				
+				if (node.getNodeType() == Node.ELEMENT_NODE) {
+					System.out.println("Entro al if del for");
+					Element element = (Element) node;
+					String userAttribute = element.getAttribute("name");
+					
+					if (userAttribute.equalsIgnoreCase(name)) {
+						System.out.println("Si es igual a["+name+"]");
+						return true;
+					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}//Fin checkExist
 	
 	public ArrayList<Model> readXMLToArrayList(String address, String elementType, String data) {
 		
@@ -288,13 +322,16 @@ public class FileXMLModel {
 					
 					Element eElement = (Element) nNode;
 	
+//					System.out.println(eElement.getElementsByTagName("brand").item(0).getTextContent());
+//					System.out.println(eElement.getElementsByTagName("bClass").item(0).getTextContent());
+//					System.out.println(eElement.getElementsByTagName("tClass").item(0).getTextContent());
+					//System.out.println(eElement.getElementsByTagName("brand").item(0).getTextContent());
 					
 					model= new Model(eElement.getAttribute("name"),
-							eElement.getElementsByTagName("brand").
-							item(0).getTextContent(),Integer.parseInt(eElement.getElementsByTagName("bClass").
-							item(0).getTextContent()),Integer.parseInt(eElement.getElementsByTagName("tClass").
-							item(0).getTextContent()),Integer.parseInt(eElement.getElementsByTagName("eClass").
-							item(0).getTextContent()));
+							eElement.getElementsByTagName("brand").item(0).getTextContent(),
+							Integer.parseInt(eElement.getElementsByTagName("bClass").item(0).getTextContent()),
+							Integer.parseInt(eElement.getElementsByTagName("tClass").item(0).getTextContent()),
+							Integer.parseInt(eElement.getElementsByTagName("eClass").item(0).getTextContent()));
 					//arrayBrands.add(brand);
 					arrayModels.add(model);
 				}
@@ -306,11 +343,17 @@ public class FileXMLModel {
 	}//fin de readXMLToArrayList
 	
 	public void setDataMatrixModel(ArrayList<Model> arrayModel) {
-		data= new String[arrayModel.size()][1];
+		data= new Object[arrayModel.size()][5];
 		for (int i = 0; i < this.data.length; i++) {
 			data[i][0]= arrayModel.get(i).getName();
+			data[i][1]= arrayModel.get(i).getArrayBrands();
+			data[i][2]= arrayModel.get(i).getSeatsBClass();
+			data[i][3]= arrayModel.get(i).getSeatsTClass();
+			data[i][4]= arrayModel.get(i).getSeatsEconomics();
+			
 		}
 	}//fin setDataMatrixModel
+	
 	public String  getModels(ArrayList<Model> arrayModel){
 		String models = "";
 		for(Model m  : arrayModel) {
@@ -318,9 +361,11 @@ public class FileXMLModel {
 		}
 		return models;
 	}//fin getModels
-	public String [][] getDataMatrixModel(){
+	
+	public Object [][] getDataMatrixModel(){
 		return this.data;
 	}//fin getDataMatrixModel
+	
 	
 	public ArrayList<Model> readModel(ArrayList<Model> arrayModel, String dataTXT) {
 //		System.out.println("ENTRO AL METODO [readBrand]");
@@ -336,6 +381,6 @@ public class FileXMLModel {
 		
 		System.out.println("Tamaño de arrayConsult"+arrayConsult.size());
 		return arrayConsult;
-	}
+	}//fin de readModel
 	
 }

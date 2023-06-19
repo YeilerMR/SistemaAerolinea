@@ -7,6 +7,7 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
+import data.FileXMLModel;
 //import data.ConnectionBrand;
 import data.FilesXML;
 import data.FilesXMLBrand;
@@ -21,23 +22,26 @@ public class Controller_Brand implements ActionListener{
 	
 	private GUI_Brand gui;
 	
-	//private FilesXML fXML;
 	private FilesXMLBrand fXMLBrand;
-	//private ConnectionBrand connectBrand;
+	private FileXMLModel fXMLModel;
+	
 	private Brand brand;
 	String dataTXT;
 
 	
 	final String nameFile= "Brand.xml";
+	final String nameFModel= "Model.xml";
 	private ArrayList<Brand> arrayBrands;
 	
 	
-	public Controller_Brand(User user) {
+	public Controller_Brand(User user, FilesXMLBrand filesXMLBrand, FileXMLModel fileXMLModel) {
 		
-		fXMLBrand= new FilesXMLBrand();
-		fXMLBrand.createXML("Brand", nameFile);
+		this.fXMLBrand= filesXMLBrand;
+		this.fXMLModel= fileXMLModel;
+//		fXMLBrand= new FilesXMLBrand();
+//		fXMLBrand.createXML("Brand", nameFile);
 		
-		//connectBrand= new ConnectionBrand();
+//		connectBrand= new ConnectionBrand();
 		
 		gui= new GUI_Brand(user);
 		brand= new Brand(gui.getTxtNombre().getText());
@@ -154,7 +158,7 @@ public class Controller_Brand implements ActionListener{
 	//Elimina una marca del xml
 	private void deleteBrand() {
 		String dataTXT= gui.getTxtNombre().getText();
-		if (fXMLBrand.checkExists(nameFile, gui.getTxtNombre().getText())) {
+		if (fXMLBrand.checkExists(nameFile, dataTXT)) {
 			fXMLBrand.deleteBrand(nameFile, "Marca", dataTXT);
 			gui.showMessage("Se elimino la marca ["+dataTXT+"] Correctamente");
 			gui.clearForm();
