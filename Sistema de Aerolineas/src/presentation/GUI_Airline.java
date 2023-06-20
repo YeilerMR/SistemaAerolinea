@@ -5,52 +5,89 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import data.LogicXML;
+import domain.User;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class GUI_Airline extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 	private JLabel lNombre;
 	private JTextField txtNombre;
+	
 	private JLabel lGestionAirline;
+	
 	private JButton bAdd;
 	private JButton bModify;
 	private JButton bDelete;
 	private JButton bConsult;
+	
 	private JLabel lOperationCenters;
 	private JTextField txtOperationCenter;
 
-	/**
-	 * Launch the application.
-	 */
+	private LogicXML lXML;
+	private JLabel lNew;
+	private JTextField txtNew;
+	private JLabel lInfo;
 	
-	/**
-	 * Create the frame.
-	 */
-	public GUI_Airline() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 567, 421);
+	private DefaultTableModel dtmAirline;
+	private JTable tAirline;
+	private JScrollPane scpAirline;
+	
+	private String [][]dataAirline;
+	//public String []columnName;
+	
+	public GUI_Airline(User user) {
+		
+		lXML= new LogicXML();
+		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 1000, 421);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
+		if (lXML.checkTypeUser(user)) {
+			
+			contentPane.add(getBModify());
+			contentPane.add(getBDelete());
+			
+			contentPane.add(getLNew());
+			contentPane.add(getTxtNew());
+		}
+		
+		setDTMAirline(dataAirline,getColumnNames());
+		setTAirline(dtmAirline);
+		setSCPAirline(tAirline);
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		contentPane.add(getLNombre());
 		contentPane.add(getTxtNombre());
 		contentPane.add(getLGestionAirline());
 		contentPane.add(getBAdd());
-		contentPane.add(getBModify());
-		contentPane.add(getBDelete());
+		
 		contentPane.add(getBConsult());
 		contentPane.add(getLOperationCenters());
 		contentPane.add(getTxtOperationCenter());
-		//setVisible(true);
+		
+		contentPane.add(getLInfo());
+		contentPane.add(getSCPAirline());
+		
+		setVisible(true);
 	}
 
 	public JLabel getLNombre() {
@@ -64,7 +101,7 @@ public class GUI_Airline extends JFrame implements ActionListener{
 	public JTextField getTxtNombre() {
 		if (txtNombre == null) {
 			txtNombre = new JTextField();
-			txtNombre.setBounds(295, 78, 119, 45);
+			txtNombre.setBounds(141, 80, 119, 45);
 			txtNombre.setColumns(10);
 		}
 		return txtNombre;
@@ -131,4 +168,73 @@ public class GUI_Airline extends JFrame implements ActionListener{
 		}
 		return txtOperationCenter;
 	}
-}
+	public JLabel getLNew() {
+		if (lNew == null) {
+			lNew = new JLabel("Nuevo: ");
+			lNew.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lNew.setBounds(281, 78, 119, 45);
+		}
+		return lNew;
+	}
+	public JTextField getTxtNew() {
+		if (txtNew == null) {
+			txtNew = new JTextField();
+			txtNew.setColumns(10);
+			txtNew.setBounds(357, 78, 119, 45);
+		}
+		return txtNew;
+	}
+	public JLabel getLInfo() {
+		if (lInfo == null) {
+			lInfo = new JLabel("Tabla de Informacion");
+			lInfo.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lInfo.setBounds(657, 78, 187, 45);
+		}
+		return lInfo;
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void clearForm() {
+		txtNombre.setText("");
+		txtOperationCenter.setText("");
+		txtNew.setText("");
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void showMessage(String message) {
+		JOptionPane.showMessageDialog(null, message);
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void setDTMAirline(String[][]dataAirlines, String[]columNames) {
+		dtmAirline= new DefaultTableModel(dataAirlines,columNames);
+	}
+	public DefaultTableModel getDTMAirline() {
+		return this.dtmAirline;
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void setSCPAirline(JTable tAirline) {
+		if (scpAirline == null) {
+			scpAirline = new JScrollPane(tAirline);
+			scpAirline.setBounds(568, 143, 359, 194);
+			scpAirline.setViewportView(getTAirline());
+		}
+		//return scpAirline;
+	}
+	public JScrollPane getSCPAirline() {
+		return this.scpAirline;
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void setTAirline(DefaultTableModel dtmAirline) {
+		tAirline= new JTable(dtmAirline);
+		tAirline.setEnabled(false);
+		tAirline.getTableHeader().setReorderingAllowed(false);
+		tAirline.getTableHeader().setResizingAllowed(false);
+	}
+	public JTable getTAirline() {
+		return this.tAirline;
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public String[] getColumnNames() {
+		String columnNames[]= {"Nombre","Centro Operaciones"};
+		
+		return columnNames;
+	}
+}//fin de GUI_Airline

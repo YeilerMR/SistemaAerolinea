@@ -13,6 +13,7 @@ import data.FilesXML;
 import data.FilesXMLBrand;
 import data.LogicXML;
 import domain.Brand;
+import domain.Model;
 import domain.User;
 import presentation.GUI_Brand;
 
@@ -23,7 +24,7 @@ public class Controller_Brand implements ActionListener{
 	private GUI_Brand gui;
 	
 	private FilesXMLBrand fXMLBrand;
-	private FileXMLModel fXMLModel;
+	private FileXMLModel filesXMLModel;
 	
 	private Brand brand;
 	String dataTXT;
@@ -31,18 +32,15 @@ public class Controller_Brand implements ActionListener{
 	
 	final String nameFile= "Brand.xml";
 	final String nameFModel= "Model.xml";
-	private ArrayList<Brand> arrayBrands;
 	
+	private ArrayList<Brand> arrayBrands;
+	//private ArrayList<Model> arrayModels;
 	
 	public Controller_Brand(User user, FilesXMLBrand filesXMLBrand, FileXMLModel fileXMLModel) {
 		
 		this.fXMLBrand= filesXMLBrand;
-		this.fXMLModel= fileXMLModel;
-//		fXMLBrand= new FilesXMLBrand();
-//		fXMLBrand.createXML("Brand", nameFile);
-		
-//		connectBrand= new ConnectionBrand();
-		
+		this.filesXMLModel= fileXMLModel;
+
 		gui= new GUI_Brand(user);
 		brand= new Brand(gui.getTxtNombre().getText());
 		
@@ -97,6 +95,7 @@ public class Controller_Brand implements ActionListener{
 			System.out.println("\n"+array.get(i).getNombre());
 		}
 	}//fin de array
+
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	//Agrega una marca al xml
 	private void addBrand() {
@@ -112,12 +111,14 @@ public class Controller_Brand implements ActionListener{
 				
 					brand= new Brand(gui.getTxtNombre().getText());
 					fXMLBrand.writeXML(nameFile, "Marca", brand.getDataName(), brand.getData());
+					//fXMLBrand.setBrands(fXMLBrand.readXMLToArrayList(nameFile, "Marca", dataTXT));
 					gui.clearForm();
 					gui.showMessage("Se agrego una marca exitosamente");
 			}
 		}
 	}//fin de addBrand
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	//Modifica una marca
 	private void updateBrand() {
 		String dataTXT= gui.getTxtNombre().getText();
 		String dataNew= gui.getTxtNew().getText();
@@ -140,7 +141,7 @@ public class Controller_Brand implements ActionListener{
 	//Imprime las marcas en una tabla
 	private void consultBrands() {
 		String dataTXT=gui.getTxtNombre().getText();
-		arrayBrands= fXMLBrand.readXMLToArrayList(nameFile, "Marca", dataTXT);
+		arrayBrands= fXMLBrand.readXMLToArrayList(nameFile, "Marca");
 		
 		fXMLBrand.setDataMatrixBrand(arrayBrands);
 		if (isEmpty(dataTXT)) {
@@ -158,13 +159,34 @@ public class Controller_Brand implements ActionListener{
 	//Elimina una marca del xml
 	private void deleteBrand() {
 		String dataTXT= gui.getTxtNombre().getText();
-		if (fXMLBrand.checkExists(nameFile, dataTXT)) {
-			fXMLBrand.deleteBrand(nameFile, "Marca", dataTXT);
-			gui.showMessage("Se elimino la marca ["+dataTXT+"] Correctamente");
-			gui.clearForm();
+		if (isEmpty(dataTXT)) {
+			gui.showMessage("No dejar el espacio 'Nombre' en blanco");
 		}else {
-			gui.showMessage("No se encontro la marca ["+dataTXT+"]");
+			//falta el array de modelos
+			
+			if (isAssociate(filesXMLModel.readXMLToArrayList(nameFModel, "Modelo"), dataTXT)) {
+				gui.showMessage("No puede eliminar una marca asociada.");
+			}else {
+				if (fXMLBrand.checkExists(nameFile, dataTXT)) {
+					fXMLBrand.deleteBrand(nameFile, "Marca", dataTXT);
+					gui.showMessage("Se elimino la marca ["+dataTXT+"] Correctamente");
+					gui.clearForm();
+				}else {
+					gui.showMessage("No se encontro la marca ["+dataTXT+"]");
+				}
+			}		
 		}
-		
-	}
-}
+	}//fin de deleteBrand
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	//Este metodo verifica si la marca se ha asociado a un modelo
+	private boolean isAssociate(ArrayList<Model> arrayModels, String dataTXT) {
+		boolean valid= false;
+		gui.showMessage("Entro al metodo isAssociate");
+		for (int i = 0; i < arrayModels.size(); i++) {
+			if (dataTXT.equalsIgnoreCase(arrayModels.get(i).getArrayBrands())) {
+				valid= true;
+			}
+		}
+		return valid;
+	}//fin de isAssociate
+}//fin de Controller_Brand

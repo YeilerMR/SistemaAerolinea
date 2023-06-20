@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Model>
-	<Modelo name="Boing">
+	<Modelo name="Cessna">
 		<brand>Brand</brand>
-		<bClass>50</bClass>
-		<tClass>50</tClass>
-		<eClass>50</eClass>
+		<bClass>35</bClass>
+		<tClass>45</tClass>
+		<eClass>55</eClass>
 	</Modelo>
-	<Modelo name="Airbus">
+	<Modelo name="AirBus">
 		<brand>Brand</brand>
-		<bClass>90</bClass>
-		<tClass>90</tClass>
-		<eClass>90</eClass>
+		<bClass>10</bClass>
+		<tClass>20</tClass>
+		<eClass>30</eClass>
+	</Modelo>
+	<Modelo name="Resis">
+		<brand>Honor</brand>
+		<bClass>67</bClass>
+		<tClass>34</tClass>
+		<eClass>12</eClass>
 	</Modelo>
 </Model>

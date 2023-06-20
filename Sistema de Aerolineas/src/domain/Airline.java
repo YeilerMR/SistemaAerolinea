@@ -30,6 +30,21 @@ public class Airline {
 	public void setOperationCenter(String operationCenter) {
 		this.operationCenter = operationCenter;
 	}
+	public String[] getDataName() {
+		String[] dataName= {"name","operationC"};
+		return dataName;
+	}
+	public String[] getData() {
+		String[] data= {name,operationCenter};
+		return data;
+	}
+
+	@Override
+	public String toString() {
+		return "Airline [name=" + name + ", operationCenter=" + operationCenter + "]";
+	}
+	
+	
 	
 	//Falta el toString
 }

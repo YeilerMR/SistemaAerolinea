@@ -24,40 +24,42 @@ import org.xml.sax.SAXException;
 import domain.Brand;
 import domain.Model;
 
-public class FileXMLModel {
+public class FileXMLModel extends FilesXMLGlobal{
 
 	private Model model;
 	private Object data[][];
 	public FileXMLModel() {}
 
-	public void createXML(String objectName,String fileName) {
-
-		File file = new File(fileName);
-
-		if(!file.exists()) {
-			try {
-				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-
-				Document doc = dBuilder.newDocument();
-
-				Element rootElement = doc.createElement(objectName);
-				doc.appendChild(rootElement);
-
-				TransformerFactory transformerFactory = TransformerFactory.newInstance();
-				Transformer transformer = transformerFactory.newTransformer();
-
-				DOMSource source = new DOMSource(doc);
-
-				StreamResult result = new StreamResult(file);
-				transformer.transform(source, result);
-
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}//fin de CreateXML
+//	public void createXML(String objectName,String fileName) {
+//
+//		File file = new File(fileName);
+//
+//		if(!file.exists()) {
+//			try {
+//				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+//				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+//
+//				Document doc = dBuilder.newDocument();
+//
+//				Element rootElement = doc.createElement(objectName);
+//				doc.appendChild(rootElement);
+//
+//				TransformerFactory transformerFactory = TransformerFactory.newInstance();
+//				Transformer transformer = transformerFactory.newTransformer();
+//
+//				DOMSource source = new DOMSource(doc);
+//
+//				StreamResult result = new StreamResult(file);
+//				transformer.transform(source, result);
+//
+//			}catch(Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}//fin de CreateXML
 	
+	
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //	public Model searchBrand(String path, String elementType, String data) {
 //		//model= new Model();
 //		
@@ -100,98 +102,98 @@ public class FileXMLModel {
 //	    }
 //	}//fin de SearchBrand
 	
-	public void writeXML(String FileName, String elementType, String[] dataName, String[] data) {
-
-		try {
-
-			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-			DocumentBuilder db = dbf.newDocumentBuilder();
-
-			Document doc = db.parse(new File(FileName));
-			doc.getDocumentElement().normalize();
-
-			Element rootElement  =  doc.getDocumentElement();
-
-			Element ele = doc.createElement(elementType);
-			rootElement.appendChild(ele);
-
-			Attr attr = doc.createAttribute(dataName[0]);
-			attr.setValue(data[0]);
-			ele.setAttributeNode(attr);
-
-			for(int i = 1; i < data.length; i++){
-
-				Element dato = doc.createElement(dataName[i]);
-				
-				//Agregue el if para saber cuando hay un valor y cuando no.
-				
-				dato.appendChild(doc.createTextNode(data[i]));
-				ele.appendChild(dato);
-				
-			}
-
-			//escribirmos el contenido en un archivo xml
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-
-			DOMSource source = new DOMSource(doc);
-
-			StreamResult result = new StreamResult(new File(FileName));
-			transformer.transform(source, result);
-
-		}catch(ParserConfigurationException pce) {
-
-			pce.printStackTrace();
-
-		}catch (SAXException e) {
-
-			e.printStackTrace();
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		} catch (TransformerConfigurationException e) {
-
-			e.printStackTrace();
-		} catch (TransformerException e) {
-
-			e.printStackTrace();
-		}
-	}//Fin de writeXML
+//	public void writeXML(String FileName, String elementType, String[] dataName, String[] data) {
+//
+//		try {
+//
+//			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+//			DocumentBuilder db = dbf.newDocumentBuilder();
+//
+//			Document doc = db.parse(new File(FileName));
+//			doc.getDocumentElement().normalize();
+//
+//			Element rootElement  =  doc.getDocumentElement();
+//
+//			Element ele = doc.createElement(elementType);
+//			rootElement.appendChild(ele);
+//
+//			Attr attr = doc.createAttribute(dataName[0]);
+//			attr.setValue(data[0]);
+//			ele.setAttributeNode(attr);
+//
+//			for(int i = 1; i < data.length; i++){
+//
+//				Element dato = doc.createElement(dataName[i]);
+//				
+//				//Agregue el if para saber cuando hay un valor y cuando no.
+//				
+//				dato.appendChild(doc.createTextNode(data[i]));
+//				ele.appendChild(dato);
+//				
+//			}
+//
+//			//escribirmos el contenido en un archivo xml
+//			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+//			Transformer transformer = transformerFactory.newTransformer();
+//
+//			DOMSource source = new DOMSource(doc);
+//
+//			StreamResult result = new StreamResult(new File(FileName));
+//			transformer.transform(source, result);
+//
+//		}catch(ParserConfigurationException pce) {
+//
+//			pce.printStackTrace();
+//
+//		}catch (SAXException e) {
+//
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//
+//			e.printStackTrace();
+//		} catch (TransformerConfigurationException e) {
+//
+//			e.printStackTrace();
+//		} catch (TransformerException e) {
+//
+//			e.printStackTrace();
+//		}
+//	}//Fin de writeXML
 	
-	public void deleteModel(String filePath, String elementType, String data) {
-		
-		try {
-			File file= new File(filePath);
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-	        DocumentBuilder builder = factory.newDocumentBuilder();
-	        Document doc = builder.parse(file);
-	        
-	        NodeList nodes= doc.getElementsByTagName(elementType);
-	        for (int i = 0; i < nodes.getLength(); i++) {
-				Node node= nodes.item(i);
-				if (node.getNodeType() == Node.ELEMENT_NODE) {
-					Element element = (Element) node;
-					String userAttribute= element.getAttribute("name");
-					if(userAttribute.equalsIgnoreCase(data)) {
-						element.getParentNode().removeChild(element);
-						
-						TransformerFactory transformerFactory = TransformerFactory.newInstance();
-	                    Transformer transformer = transformerFactory.newTransformer();
-	                    DOMSource source = new DOMSource(doc);
-	                    StreamResult result = new StreamResult(file);
-	                    transformer.transform(source, result);
-	                    
-	                    //return true;
-					}
-				}
-			}
-	        //return false;
-		} catch (ParserConfigurationException | SAXException | IOException | TransformerException e) {
-			e.printStackTrace();
-			//return false;
-		}
-	}//fin de deleteModel
-	
+//	public void deleteFromXML(String filePath, String elementType, String data) {
+//		
+//		try {
+//			File file= new File(filePath);
+//			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+//	        DocumentBuilder builder = factory.newDocumentBuilder();
+//	        Document doc = builder.parse(file);
+//	        
+//	        NodeList nodes= doc.getElementsByTagName(elementType);
+//	        for (int i = 0; i < nodes.getLength(); i++) {
+//				Node node= nodes.item(i);
+//				if (node.getNodeType() == Node.ELEMENT_NODE) {
+//					Element element = (Element) node;
+//					String userAttribute= element.getAttribute("name");
+//					if(userAttribute.equalsIgnoreCase(data)) {
+//						element.getParentNode().removeChild(element);
+//						
+//						TransformerFactory transformerFactory = TransformerFactory.newInstance();
+//	                    Transformer transformer = transformerFactory.newTransformer();
+//	                    DOMSource source = new DOMSource(doc);
+//	                    StreamResult result = new StreamResult(file);
+//	                    transformer.transform(source, result);
+//	                    
+//	                    //return true;
+//					}
+//				}
+//			}
+//	        //return false;
+//		} catch (ParserConfigurationException | SAXException | IOException | TransformerException e) {
+//			e.printStackTrace();
+//			//return false;
+//		}
+//	}//fin de deleteModel
+//	
 	public void updateModel(String fileName, String elementType, String[] dataName, String[] data, String nameChange) {
 		try {
 			File file= new File(fileName);
@@ -208,11 +210,12 @@ public class FileXMLModel {
 					System.out.println("\nupdateBrand: "+data[0]+"\nuserAttribute: "+userAttribute);
 					if (userAttribute.equalsIgnoreCase(nameChange)) {
 						//System.out.println("Si es igual a::"+data[0]);
-						//element.setAttribute("name", data[0]);
+						element.setAttribute("name", data[0]);
 						for (int j = 1; j < dataName.length; j++) {
 							NodeList childNodes= element.getElementsByTagName(dataName[j]);
 							Element childElement= (Element)childNodes.item(0); 
 							childElement.setTextContent(data[j]);
+							
 						}//for
 						
 						TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -230,80 +233,78 @@ public class FileXMLModel {
 		}
 	}//fin de updateBrand
 	
-	public boolean checkExists(String fileName, String name) {
-        try {
-        	System.out.println("Entro al metodo checkExists");
-            File inputFile = new File(fileName);
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(inputFile);
-            
-            
-            doc.getDocumentElement().normalize();
-
-            NodeList nodeList = doc.getElementsByTagName("Modelo");
-
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                Node node = nodeList.item(i);
-
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-                	System.out.println("Entro al if del for");
-                    Element element = (Element) node;
-                    String userAttribute = element.getAttribute("name");
-
-                    if (userAttribute.equalsIgnoreCase(name)) {
-                    	System.out.println("Si es igual a["+name+"]");
-                        return true;
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return false;
-    }//Fin checkExist
+//	public boolean checkExists(String fileName,String elementType ,String name) {
+//        try {
+//        	System.out.println("Entro al metodo checkExists");
+//            File inputFile = new File(fileName);
+//            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+//            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+//            Document doc = dBuilder.parse(inputFile);
+//            
+//            
+//            doc.getDocumentElement().normalize();
+//
+//            NodeList nodeList = doc.getElementsByTagName(elementType);
+//
+//            for (int i = 0; i < nodeList.getLength(); i++) {
+//                Node node = nodeList.item(i);
+//
+//                if (node.getNodeType() == Node.ELEMENT_NODE) {
+//                	System.out.println("Entro al if del for");
+//                    Element element = (Element) node;
+//                    String userAttribute = element.getAttribute("name");
+//
+//                    if (userAttribute.equalsIgnoreCase(name)) {
+//                    	System.out.println("Si es igual a["+name+"]");
+//                        return true;
+//                    }
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        return false;
+//    }//Fin checkExist
+//	
+//	public boolean checkExistsBrand(String fileName, String name) {
+//		try {
+//			System.out.println("Entro al metodo checkExists");
+//			File inputFile = new File(fileName);
+//			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+//			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+//			Document doc = dBuilder.parse(inputFile);
+//			
+//			
+//			doc.getDocumentElement().normalize();
+//			
+//			NodeList nodeList = doc.getElementsByTagName("Modelo");
+//			
+//			for (int i = 0; i < nodeList.getLength(); i++) {
+//				Node node = nodeList.item(i);
+//				
+//				if (node.getNodeType() == Node.ELEMENT_NODE) {
+//					System.out.println("Entro al if del for");
+//					Element element = (Element) node;
+//					String userAttribute = element.getAttribute("name");
+//					
+//					if (userAttribute.equalsIgnoreCase(name)) {
+//						System.out.println("Si es igual a["+name+"]");
+//						return true;
+//					}
+//				}
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return false;
+//	}//Fin checkExist
 	
-	public boolean checkExistsBrand(String fileName, String name) {
-		try {
-			System.out.println("Entro al metodo checkExists");
-			File inputFile = new File(fileName);
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(inputFile);
-			
-			
-			doc.getDocumentElement().normalize();
-			
-			NodeList nodeList = doc.getElementsByTagName("Modelo");
-			
-			for (int i = 0; i < nodeList.getLength(); i++) {
-				Node node = nodeList.item(i);
-				
-				if (node.getNodeType() == Node.ELEMENT_NODE) {
-					System.out.println("Entro al if del for");
-					Element element = (Element) node;
-					String userAttribute = element.getAttribute("name");
-					
-					if (userAttribute.equalsIgnoreCase(name)) {
-						System.out.println("Si es igual a["+name+"]");
-						return true;
-					}
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return false;
-	}//Fin checkExist
-	
-	public ArrayList<Model> readXMLToArrayList(String address, String elementType, String data) {
+	public ArrayList<Model> readXMLToArrayList(String address, String elementType) {
 		
 		ArrayList<Model> arrayModels;
 		arrayModels = new ArrayList<Model>();
-	
-		//Brand brand = new Brand();
 	
 		try {
 			File inputFile = new File(address);
@@ -316,23 +317,17 @@ public class FileXMLModel {
 			
 			for (int indice = 0; indice < nList.getLength(); indice++) {
 				Node nNode = nList.item(indice);
-				//System.out.println("\nDatos de las Facturas: " + nNode.getNodeName());
-	
+				
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 					
 					Element eElement = (Element) nNode;
-	
-//					System.out.println(eElement.getElementsByTagName("brand").item(0).getTextContent());
-//					System.out.println(eElement.getElementsByTagName("bClass").item(0).getTextContent());
-//					System.out.println(eElement.getElementsByTagName("tClass").item(0).getTextContent());
-					//System.out.println(eElement.getElementsByTagName("brand").item(0).getTextContent());
-					
+
 					model= new Model(eElement.getAttribute("name"),
 							eElement.getElementsByTagName("brand").item(0).getTextContent(),
 							Integer.parseInt(eElement.getElementsByTagName("bClass").item(0).getTextContent()),
 							Integer.parseInt(eElement.getElementsByTagName("tClass").item(0).getTextContent()),
 							Integer.parseInt(eElement.getElementsByTagName("eClass").item(0).getTextContent()));
-					//arrayBrands.add(brand);
+					
 					arrayModels.add(model);
 				}
 			}

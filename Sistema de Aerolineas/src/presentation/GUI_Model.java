@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -56,7 +57,9 @@ public class GUI_Model extends JFrame implements ActionListener{
 	
 	private String [][] dataModels;
 	//public String []columnName;
-	private JComboBox comboBox;
+	private JComboBox comboBrands;
+	private JLabel lNew;
+	private JTextField txtNew;
 
 	/**
 	 * Launch the application.
@@ -77,6 +80,9 @@ public class GUI_Model extends JFrame implements ActionListener{
 		if (lXML.checkTypeUser(user)) {
 			contentPane.add(getBModify());
 			contentPane.add(getBDelete());
+			
+			contentPane.add(getLNew());
+			contentPane.add(getTxtNew());
 		}
 
 		setDTMModel(dataModels,getColumnsName());
@@ -100,7 +106,9 @@ public class GUI_Model extends JFrame implements ActionListener{
 		contentPane.add(getTxtEconomic());
 		contentPane.add(getSCPModel());
 		contentPane.add(getLInfo());
-		//contentPane.add(getComboBox());
+		
+		contentPane.add(getComboBrands());
+		
 		setVisible(true);
 	}
 
@@ -115,7 +123,7 @@ public class GUI_Model extends JFrame implements ActionListener{
 	public JTextField getTxtNombre() {
 		if (txtNombre == null) {
 			txtNombre = new JTextField();
-			txtNombre.setBounds(295, 78, 119, 45);
+			txtNombre.setBounds(141, 80, 119, 45);
 			txtNombre.setColumns(10);
 		}
 		return txtNombre;
@@ -231,9 +239,9 @@ public class GUI_Model extends JFrame implements ActionListener{
 
 	public JLabel getLInfo() {
 		if (lInfo == null) {
-			lInfo = new JLabel("Informacion");
+			lInfo = new JLabel("Tabla de Informacion");
 			lInfo.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lInfo.setBounds(592, 78, 106, 45);
+			lInfo.setBounds(579, 78, 179, 45);
 		}
 		return lInfo;
 	}
@@ -243,6 +251,7 @@ public class GUI_Model extends JFrame implements ActionListener{
 		txtBClass.setText("");
 		txtTClass.setText("");
 		txtEconomic.setText("");
+		//fillComboBox(null);
 	}//limpia formulario
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public void showMessage(String message) {
@@ -257,10 +266,10 @@ public class GUI_Model extends JFrame implements ActionListener{
 		return this.dtmModel;
 	}
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	public void setSCPModel(JTable jModel) {
+	public void setSCPModel(JTable tModel) {
 		
-		scpModel = new JScrollPane(jModel);
-		scpModel.setBounds(475, 149, 340, 193);
+		scpModel = new JScrollPane(tModel);
+		scpModel.setBounds(475, 149, 369, 193);
 		scpModel.setViewportView(getTModel());
 	}
 	public JScrollPane getSCPModel() {
@@ -282,11 +291,33 @@ public class GUI_Model extends JFrame implements ActionListener{
 								"C. Turista","C. Económico"};
 		return columnsName;
 	}
-	public JComboBox getComboBox() {
-		if (comboBox == null) {
-			comboBox = new JComboBox();
-			comboBox.setBounds(295, 133, 119, 30);
+	public JComboBox getComboBrands() {
+		if (comboBrands == null) {
+			comboBrands = new JComboBox();
+			comboBrands.setBounds(295, 133, 119, 30);
 		}
-		return comboBox;
+		return comboBrands;
+	}
+	public JLabel getLNew() {
+		if (lNew == null) {
+			lNew = new JLabel("Nuevo:");
+			lNew.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lNew.setBounds(316, 78, 119, 45);
+		}
+		return lNew;
+	}
+	public JTextField getTxtNew() {
+		if (txtNew == null) {
+			txtNew = new JTextField();
+			txtNew.setColumns(10);
+			txtNew.setBounds(393, 80, 119, 45);
+		}
+		return txtNew;
+	}
+	public void fillComboBox(ArrayList<String> brands) {
+		comboBrands.addItem("Vacio");
+		for (String brand : brands) {
+			comboBrands.addItem(brand);
+		}
 	}
 }

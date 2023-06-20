@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import data.FileXMLModel;
+import data.FilesXMLAirline;
 import data.FilesXMLBrand;
 import domain.User;
 import presentation.GUI_Brand;
@@ -18,9 +19,11 @@ public class Controller_Main implements ActionListener{
 
 	private Controller_Brand cBrand;
 	private Controller_Model cModel;
+	private Controller_Airline cAirline;
 	
 	private FilesXMLBrand fXMLBrand;
 	private FileXMLModel fXMLModel;
+	private FilesXMLAirline fXMLAirline;
 	
 	private User user;
 	
@@ -37,12 +40,17 @@ public class Controller_Main implements ActionListener{
 		//Crea el archivo Model.xml
 		fXMLModel= new FileXMLModel();
 		fXMLModel.createXML("Model", "Model.xml");
+		
+		fXMLAirline= new FilesXMLAirline();
+		fXMLAirline.createXML("Airline", "Airline.xml");
+		
 		initializer();
 	}
 	
 	public void initializer() {
 		gui_M.getBtnMbrand().addActionListener(this);
 		gui_M.getBtnMModel().addActionListener(this);
+		gui_M.getBtnMAirline().addActionListener(this);
 		
 	}
 
@@ -62,6 +70,8 @@ public class Controller_Main implements ActionListener{
 		}
 		if(e.getSource()== gui_M.getBtnMAirline()) {
 			//Abre la pestaña GUI_Airline
+			JOptionPane.showMessageDialog(null, "Entra a Airlines");
+			cAirline= new Controller_Airline(user);
 			
 		}
 		if (e.getSource()==gui_M.getBtnMAirplane()) {

@@ -29,6 +29,7 @@ public class FilesXMLBrand {
 
 	private Brand brand;
 	private String data[][];
+	private ArrayList<String> arrayBrands= new ArrayList<String>();
 	public FilesXMLBrand() {}
 	
 	
@@ -270,7 +271,7 @@ public class FilesXMLBrand {
 
         return false;
     }//Fin checkExist
-	public ArrayList<Brand> readXMLToArrayList(String address, String elementType, String data) {
+	public ArrayList<Brand> readXMLToArrayList(String address, String elementType) {
 		
 			ArrayList<Brand> arrayBrands;
 			arrayBrands = new ArrayList<Brand>();
@@ -313,13 +314,14 @@ public class FilesXMLBrand {
 			data[i][0]= arrayBrand.get(i).getNombre();
 		}
 	}
-	public String  getBrands(ArrayList<Brand> arrayBrand){
-		String brands = "";
-		for(Brand b : arrayBrand) {
-			brands += b.toString();
+	public void  setBrands(ArrayList<Brand> arrayBrand){
+		for (int i = 0; i < arrayBrand.size(); i++) {
+			this.arrayBrands.add(arrayBrand.get(i).getNombre());
 		}
-		return brands;
 	} 
+	public ArrayList<String> getArrayBrands(){
+		return this.arrayBrands;
+	}
 	
 	public String [][] getDataMatrixBrand(){
 		return this.data;
