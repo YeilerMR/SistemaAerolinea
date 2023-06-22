@@ -123,7 +123,7 @@ public class FilesXMLAirline extends FilesXMLGlobal{
 	public String getAirlines(ArrayList<Airline> arrayAirline) {
 		String airlines= "";
 		for (Airline a : arrayAirline) {
-			airlines+= airlines.toString();
+			airlines+= a.toString();
 		}
 		return airlines;
 	}//fin de getAirlines

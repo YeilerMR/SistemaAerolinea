@@ -123,7 +123,7 @@ public abstract class FilesXMLGlobal {
 				Node node= nodes.item(i);
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
 					Element element = (Element) node;
-					String userAttribute= element.getAttribute("name");
+					String userAttribute= element.getAttribute("nPassport");
 					if(userAttribute.equalsIgnoreCase(data)) {
 						element.getParentNode().removeChild(element);
 						

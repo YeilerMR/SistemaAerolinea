@@ -20,6 +20,7 @@ public class GUI_Main extends JFrame {
 	private JButton btnMAirplane;
 	private JButton btnMFlights;
 	private JLabel lblNewLabel;
+	private JButton btnMPassenger;
 
 	/**
 	 * Launch the application.
@@ -30,7 +31,7 @@ public class GUI_Main extends JFrame {
 	 */
 	public GUI_Main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 729, 502);
+		setBounds(100, 100, 729, 561);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -43,6 +44,7 @@ public class GUI_Main extends JFrame {
 		contentPane.add(getBtnMAirplane());
 		contentPane.add(getBtnMFlights());
 		contentPane.add(getLblNewLabel());
+		contentPane.add(getBtnMPassenger());
 		setVisible(true);
 	}
 	public JButton getBtnMUser() {
@@ -100,5 +102,13 @@ public class GUI_Main extends JFrame {
 			lblNewLabel.setBounds(258, 27, 447, 411);
 		}
 		return lblNewLabel;
+	}
+	public JButton getBtnMPassenger() {
+		if (btnMPassenger == null) {
+			btnMPassenger = new JButton("G. de Pasajeros");
+			btnMPassenger.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			btnMPassenger.setBounds(60, 475, 146, 39);
+		}
+		return btnMPassenger;
 	}
 }

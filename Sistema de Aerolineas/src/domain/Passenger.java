@@ -70,7 +70,18 @@ public class Passenger {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	public String []getDataName(){
+		String[] dataName= {"nPassport","name","lastName","dateBirth","email","phone"};
+		return dataName;
+	}
+	public String[] getData() {
+		String[] data= {nPassport,name,lastName,dateBirth,email,phone};
+		return data;
+	}
 
-	//falta toString
-	
-}
+	@Override
+	public String toString() {
+		return "Passenger [nPassport=" + nPassport + ", name=" + name + ", lastName=" + lastName + ", dateBirth="
+				+ dateBirth + ", email=" + email + ", phone=" + phone + "]";
+	}
+}//fin de passenger

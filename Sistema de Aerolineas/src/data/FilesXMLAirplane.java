@@ -67,7 +67,7 @@ public class FilesXMLAirplane extends FilesXMLGlobal{
 		}
 	}//fin de updateBrand
 	
-public ArrayList<Airplane> readXMLToArrayList(String address, String elementType) {
+	public ArrayList<Airplane> readXMLToArrayList(String address, String elementType) {
 		
 		ArrayList<Airplane> arrayAirplanes;
 		arrayAirplanes = new ArrayList<Airplane>();
@@ -115,7 +115,7 @@ public ArrayList<Airplane> readXMLToArrayList(String address, String elementType
 	public String getAirplanes(ArrayList<Airplane> arrayAirplanes) {
 		String airplanes="";
 		for (Airplane air : arrayAirplanes) {
-			airplanes+= airplanes.toString();
+			airplanes+= air.toString();
 		}
 		return airplanes;
 	}

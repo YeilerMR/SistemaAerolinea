@@ -68,13 +68,13 @@ public class Controller_Airplane implements ActionListener{
 			updateAirplane();
 		}
 		if(e.getSource()== gui.getBConsult()) {
-			
+			consultAirplane();
 		}
 		if (e.getSource()== gui.getBDelete()) {
-			
+			deleteAirplane();
 		}
 	}
-	
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	private void addAirplane() {
 		String dataTXT= gui.getTxtRegistration().getText();
 		String dataABox= ""+gui.getComboAirline().getSelectedItem();
@@ -96,7 +96,7 @@ public class Controller_Airplane implements ActionListener{
 		}
 		
 	}//fin de addAirplane
-	
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	private void updateAirplane() {
 		String dataTXT= gui.getTxtRegistration().getText();
 		String dataABox= ""+gui.getComboAirline().getSelectedItem();
@@ -118,8 +118,40 @@ public class Controller_Airplane implements ActionListener{
 		}
 		
 	}//fin de updateAirplane
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	private void consultAirplane() {
+		String dataTXT= gui.getTxtRegistration().getText();
+		arrayAirplanes= fXMLAirplane.readXMLToArrayList(nameFile, elementType);
+		
+		fXMLAirplane.setDataMatrixAirplane(arrayAirplanes);
+		if (fXMLAirplane.isEmpty(dataTXT)) {
+			gui.getDTMAirplane().setDataVector(fXMLAirplane.getDataMatrixAirplane(), gui.getColumnsName());
+		}else {
+			arrayAirplanes= fXMLAirplane.readAirplane(arrayAirplanes, dataTXT);
+			fXMLAirplane.setDataMatrixAirplane(arrayAirplanes);
+			gui.getDTMAirplane().setDataVector(fXMLAirplane.getDataMatrixAirplane(), gui.getColumnsName());
+			gui.clearForm();
+		}
+	}//fin de consultAirplane
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	private void deleteAirplane() {
+		String dataTXT= gui.getTxtRegistration().getText();
+		if(fXMLAirplane.isEmpty(dataTXT)) {
+			gui.showMessage("No dejar el espacio 'Matricula' en blanco");
+			
+		}else {
+			//Falta validar que no esten registrado a algun VUELO!!
+			if (fXMLAirplane.checkExists(nameFile, elementType, dataTXT)) {
+				fXMLAirplane.deleteFromXML(nameFile, elementType, dataTXT);
+				gui.showMessage("Se elimino el avion ["+dataTXT+"] Correctamente");
+				gui.clearForm();
+			}else {
+				gui.showMessage("No se encontro el avion con matricula ["+dataTXT+"]");
+			}
+		}
 	
-	
-	
+	}//fin de deleteAirplane
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	//falta metodo isAssociated
 	
 }

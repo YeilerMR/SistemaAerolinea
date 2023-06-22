@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Airplane>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Airplane>
 	<Avion registration="12345">
 		<airlines>KencirioA</airlines>
 		<models>AirBus</models>
 		<year>2011</year>
 	</Avion>
-</Airplane>
+<Avion registration="6789"><airlines>Atlas</airlines><models>AEC</models><year>2020</year></Avion></Airplane>
