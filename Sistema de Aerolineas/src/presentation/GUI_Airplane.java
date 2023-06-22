@@ -5,13 +5,24 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import data.LogicXML;
+import domain.User;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class GUI_Airplane extends JFrame implements ActionListener{
 
@@ -27,6 +38,20 @@ public class GUI_Airplane extends JFrame implements ActionListener{
 	private JLabel lModels;
 	private JLabel lYear;
 	private JTextField txtYear;
+	
+	private LogicXML lXML;
+	
+	private DefaultTableModel dtmAirplane;
+	private JTable tAirplane;
+	private JScrollPane scpAirplane;
+	
+	private String [][]dataAirlines;
+	
+	private JComboBox comboAirline;
+	private JComboBox comboModel;
+	
+	private JLabel lInfo;
+	
 
 	/**
 	 * Launch the application.
@@ -35,26 +60,45 @@ public class GUI_Airplane extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public GUI_Airplane() {
+	public GUI_Airplane(User user) {
+		
+		lXML= new LogicXML();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 569, 542);
+		setBounds(100, 100, 948, 542);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		if (lXML.checkTypeUser(user)) {
+			contentPane.add(getBModify());
+			contentPane.add(getBDelete());
+		}
 
+		setDTMAirplane(dataAirlines,getColumnsName());
+		setTAirplane(dtmAirplane);
+		setSCPAirplane(tAirplane);
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		contentPane.add(getLRegistration());
 		contentPane.add(getTxtRegistration());
 		contentPane.add(getLGestionM());
 		contentPane.add(getBAdd());
-		contentPane.add(getBModify());
-		contentPane.add(getBDelete());
+		
 		contentPane.add(getBConsult());
 		contentPane.add(getLAirline());
 		contentPane.add(getLModels());
 		contentPane.add(getLYear());
 		contentPane.add(getTxtYear());
-		//setVisible(true);
+		
+		contentPane.add(getComboAirline());
+		contentPane.add(getComboModel());
+		
+		contentPane.add(getLInfo());
+		contentPane.add(getSCPAirplane());
+		
+		
+		setVisible(true);
 	}
 
 	public JLabel getLRegistration() {
@@ -156,5 +200,80 @@ public class GUI_Airplane extends JFrame implements ActionListener{
 			txtYear.setBounds(295, 243, 119, 45);
 		}
 		return txtYear;
+	}
+	public JComboBox getComboAirline() {
+		if (comboAirline == null) {
+			comboAirline = new JComboBox();
+			comboAirline.setBounds(295, 133, 119, 30);
+		}
+		return comboAirline;
+	}
+	public JComboBox getComboModel() {
+		if (comboModel == null) {
+			comboModel = new JComboBox();
+			comboModel.setBounds(295, 188, 119, 30);
+		}
+		return comboModel;
+	}
+	public JLabel getLInfo() {
+		if (lInfo == null) {
+			lInfo = new JLabel("Información");
+			lInfo.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lInfo.setBounds(638, 78, 187, 45);
+		}
+		return lInfo;
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void clearForm() {
+		txtRegistration.setText("");
+		txtYear.setText("");
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void showMessage(String message) {
+		JOptionPane.showMessageDialog(null, message);
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void setDTMAirplane(String [][]dataAirplanes, String[]columnName) {
+		dtmAirplane= new DefaultTableModel(dataAirplanes, columnName);
+	}
+	public DefaultTableModel getDTMAirplane() {
+		return this.dtmAirplane;
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void setSCPAirplane(JTable tAirplane) {
+		scpAirplane = new JScrollPane();
+		scpAirplane.setBounds(511, 133, 374, 202);
+		scpAirplane.setViewportView(getTAirplane());
+	}
+	public JScrollPane getSCPAirplane() {
+		return this.scpAirplane;
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void setTAirplane(DefaultTableModel dtmAirplane) {
+		tAirplane= new JTable(dtmAirplane);
+		tAirplane.setEnabled(false);
+		tAirplane.getTableHeader().setReorderingAllowed(false);
+		tAirplane.getTableHeader().setResizingAllowed(false);
+	}
+	public JTable getTAirplane() {
+		return this.tAirplane;
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public String[]getColumnsName(){
+		String columnsName[]= {"Matricula","Aerolinea","Modelo","Año"}; 
+		return columnsName;
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void fillComboAirlines(ArrayList<String> airlines) {
+		comboAirline.addItem("Vacio");
+		for (String airline : airlines) {
+			comboAirline.addItem(airline);
+		}
+	}
+	public void fillComboModels(ArrayList<String> models) {
+		comboModel.addItem("Vacio");
+		for (String model : models) {
+			comboModel.addItem(model);
+		}
 	}
 }

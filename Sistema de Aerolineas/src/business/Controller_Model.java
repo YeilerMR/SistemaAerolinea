@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import data.FileXMLModel;
+import data.FilesXMLAirplane;
 import data.FilesXMLBrand;
 import data.LogicXML;
+import domain.Airplane;
 import domain.Model;
 import domain.User;
 import presentation.GUI_Model;
@@ -16,11 +18,14 @@ public class Controller_Model implements ActionListener{
 	private Model model;
 	private GUI_Model gui;
 	//private LogicXML lXml;
+	
 	private FileXMLModel fXMLModel;
 	private FilesXMLBrand filesXMLBrand;
+	private FilesXMLAirplane filesXMLAirplane;
 	
 	
 	final String nameFileBrand= "Brand.xml";
+	final String nameFAirplane= "Airplane.xml";
 	final String nameFile= "Model.xml";
 	final String elementType= "Modelo";
 	
@@ -31,7 +36,9 @@ public class Controller_Model implements ActionListener{
 	
 	
 	
-	public Controller_Model(User user) {
+	public Controller_Model(User user, FilesXMLAirplane fileXMLAirplane) {
+		
+		this.filesXMLAirplane= fileXMLAirplane;
 		
 		gui= new GUI_Model(user);
 		
@@ -125,7 +132,7 @@ public class Controller_Model implements ActionListener{
 				
 				model= new Model(dataNew, dataCBox,Integer.parseInt(dataBClass),
 						Integer.parseInt(dataTClass), Integer.parseInt(dataEClass));
-				System.out.println("desde el vector: "+model.getData()[0]);
+				//System.out.println("desde el vector: "+model.getData()[0]);
 				fXMLModel.updateModel(nameFile, elementType, model.getDataName(), model.getData(), dataTXT);
 				gui.clearForm();
 			}else {
@@ -155,14 +162,30 @@ public class Controller_Model implements ActionListener{
 		if (fXMLModel.isEmpty(dataTXT)) {
 			gui.showMessage("No dejar el espacio 'Nombre' en blanco");
 		}else {
-			if (fXMLModel.checkExists(nameFile, elementType,dataTXT)) {
-				fXMLModel.deleteFromXML(nameFile, elementType, dataTXT);
-				gui.showMessage("Se elimino el modelo ["+dataTXT+"] Correctamente");
-				gui.clearForm();
+			if (isAssociate(filesXMLAirplane.readXMLToArrayList(nameFAirplane, "Avion"), dataTXT)) {
+				gui.showMessage("No puede eliminar un modelo asociada.");
 			}else {
-				gui.showMessage("No se encontro el modelo ["+dataTXT+"]");
+				if (fXMLModel.checkExists(nameFile, elementType,dataTXT)) {
+					fXMLModel.deleteFromXML(nameFile, elementType, dataTXT);
+					gui.showMessage("Se elimino el modelo ["+dataTXT+"] Correctamente");
+					gui.clearForm();
+				}else {
+					gui.showMessage("No se encontro el modelo ["+dataTXT+"]");
+				}
 			}
+			
 		}
 	}//fin de deleteModel
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	private boolean isAssociate(ArrayList<Airplane> arrayAirplanes,String dataTXT) {
+		boolean valid= false;
+		gui.showMessage("Entro al metodo isAssociate");
+		gui.showMessage(""+arrayAirplanes.size());
+		for (int i = 0; i < arrayAirplanes.size(); i++) {
+			if (dataTXT.equalsIgnoreCase(arrayAirplanes.get(i).getArrayModels())) {
+				valid= true;
+			}
+		}
+		return valid;
+	}
 }//fin de Controller_Model

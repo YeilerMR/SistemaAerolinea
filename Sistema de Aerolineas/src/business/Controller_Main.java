@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import data.FileXMLModel;
 import data.FilesXMLAirline;
+import data.FilesXMLAirplane;
 import data.FilesXMLBrand;
 import domain.User;
 import presentation.GUI_Brand;
@@ -20,10 +21,12 @@ public class Controller_Main implements ActionListener{
 	private Controller_Brand cBrand;
 	private Controller_Model cModel;
 	private Controller_Airline cAirline;
+	private Controller_Airplane cAirplane;
 	
 	private FilesXMLBrand fXMLBrand;
 	private FileXMLModel fXMLModel;
 	private FilesXMLAirline fXMLAirline;
+	private FilesXMLAirplane fXMLAirplane;
 	
 	private User user;
 	
@@ -44,6 +47,9 @@ public class Controller_Main implements ActionListener{
 		fXMLAirline= new FilesXMLAirline();
 		fXMLAirline.createXML("Airline", "Airline.xml");
 		
+		fXMLAirplane= new FilesXMLAirplane();
+		fXMLAirplane.createXML("Airplane", "Airplane.xml");
+		
 		initializer();
 	}
 	
@@ -51,7 +57,7 @@ public class Controller_Main implements ActionListener{
 		gui_M.getBtnMbrand().addActionListener(this);
 		gui_M.getBtnMModel().addActionListener(this);
 		gui_M.getBtnMAirline().addActionListener(this);
-		
+		gui_M.getBtnMAirplane().addActionListener(this);
 	}
 
 	@Override
@@ -65,17 +71,19 @@ public class Controller_Main implements ActionListener{
 		if (e.getSource()==gui_M.getBtnMModel()) {
 			//Abre la pestaña GUI_Model;
 
-			cModel= new Controller_Model(user);
+			cModel= new Controller_Model(user, fXMLAirplane);
 			JOptionPane.showMessageDialog(null, "Entra a models");
 		}
 		if(e.getSource()== gui_M.getBtnMAirline()) {
 			//Abre la pestaña GUI_Airline
 			JOptionPane.showMessageDialog(null, "Entra a Airlines");
-			cAirline= new Controller_Airline(user);
+			cAirline= new Controller_Airline(user,fXMLAirplane);
 			
 		}
 		if (e.getSource()==gui_M.getBtnMAirplane()) {
 			//Abre la pestaña GUI_Airplane
+			JOptionPane.showMessageDialog(null, "Entra a Airplane");
+			cAirplane= new Controller_Airplane(user);
 		}
 		if (e.getSource()==gui_M.getBtnMFlights()) {
 			

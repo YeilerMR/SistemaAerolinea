@@ -27,7 +27,7 @@ public class Controller_Brand implements ActionListener{
 	private FileXMLModel filesXMLModel;
 	
 	private Brand brand;
-	String dataTXT;
+	//String dataTXT;
 
 	
 	final String nameFile= "Brand.xml";
@@ -36,7 +36,7 @@ public class Controller_Brand implements ActionListener{
 	private ArrayList<Brand> arrayBrands;
 	//private ArrayList<Model> arrayModels;
 	
-	public Controller_Brand(User user, FilesXMLBrand filesXMLBrand, FileXMLModel fileXMLModel) {
+	public Controller_Brand(User user,FilesXMLBrand filesXMLBrand, FileXMLModel fileXMLModel) {
 		
 		this.fXMLBrand= filesXMLBrand;
 		this.filesXMLModel= fileXMLModel;

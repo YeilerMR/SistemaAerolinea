@@ -146,14 +146,7 @@ public class GUI_Model extends JFrame implements ActionListener{
 		return bAdd;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == getBAdd()) {
-			do_bAgregar_actionPerformed(e);
-		}
-		// TODO Auto-generated method stub
-		
-	}
+	
 	public JButton getBModify() {
 		if (bModify == null) {
 			bModify = new JButton("Modificar");
@@ -178,8 +171,7 @@ public class GUI_Model extends JFrame implements ActionListener{
 		}
 		return bConsult;
 	}
-	protected void do_bAgregar_actionPerformed(ActionEvent e) {
-	}
+	
 	public JLabel getLBrands() {
 		if (lBrands == null) {
 			lBrands = new JLabel("Marcas:");
@@ -319,5 +311,9 @@ public class GUI_Model extends JFrame implements ActionListener{
 		for (String brand : brands) {
 			comboBrands.addItem(brand);
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {	
 	}
 }

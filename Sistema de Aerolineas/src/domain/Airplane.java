@@ -2,19 +2,21 @@ package domain;
 
 import java.util.ArrayList;
 
+import javax.lang.model.element.NestingKind;
+
 public class Airplane {
 
 	private String registration;
-	private ArrayList<Airline> arrayAirlines;
-	private ArrayList<Model> arrayModels;
+	private String arrayAirlines;
+	private String arrayModels;
 	private String year;
 	
 	public Airplane() {
 		
 	}
 
-	public Airplane(String registration, ArrayList<Airline> arrayAirlines, ArrayList<Model> arrayModels, String year) {
-		//super();
+	public Airplane(String registration, String arrayAirlines, String arrayModels, String year) {
+		super();
 		this.registration = registration;
 		this.arrayAirlines = arrayAirlines;
 		this.arrayModels = arrayModels;
@@ -29,19 +31,19 @@ public class Airplane {
 		this.registration = registration;
 	}
 
-	public ArrayList<Airline> getArrayAirlines() {
+	public String getArrayAirlines() {
 		return arrayAirlines;
 	}
 
-	public void setArrayAirlines(ArrayList<Airline> arrayAirlines) {
+	public void setArrayAirlines(String arrayAirlines) {
 		this.arrayAirlines = arrayAirlines;
 	}
 
-	public ArrayList<Model> getArrayModels() {
+	public String getArrayModels() {
 		return arrayModels;
 	}
 
-	public void setArrayModels(ArrayList<Model> arrayModels) {
+	public void setArrayModels(String arrayModels) {
 		this.arrayModels = arrayModels;
 	}
 
@@ -51,6 +53,20 @@ public class Airplane {
 
 	public void setYear(String year) {
 		this.year = year;
+	}
+	public String []getDataName(){
+		String[] dataName= {"registration","airlines","models","year"};
+		return dataName;
+	}
+	public String []getData(){
+		String []data= {registration,arrayAirlines,arrayModels,year};
+		return data;
+	}
+
+	@Override
+	public String toString() {
+		return "Airplane [registration=" + registration + ", arrayAirlines=" + arrayAirlines + ", arrayModels="
+				+ arrayModels + ", year=" + year + "]";
 	}
 	
 	//Falta el toString

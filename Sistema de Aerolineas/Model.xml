@@ -1,16 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Model>
-	<Modelo name="Cessna">
-		<brand>Brand</brand>
-		<bClass>35</bClass>
-		<tClass>45</tClass>
-		<eClass>55</eClass>
-	</Modelo>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Model>
+	
 	<Modelo name="AirBus">
-		<brand>Brand</brand>
-		<bClass>10</bClass>
-		<tClass>20</tClass>
-		<eClass>30</eClass>
+		<brand>Seven</brand>
+		<bClass>12</bClass>
+		<tClass>23</tClass>
+		<eClass>34</eClass>
 	</Modelo>
 	<Modelo name="Resis">
 		<brand>Honor</brand>

@@ -28,6 +28,7 @@ public class FileXMLModel extends FilesXMLGlobal{
 
 	private Model model;
 	private Object data[][];
+	private ArrayList<String> arrayModels= new ArrayList<String>();
 	public FileXMLModel() {}
 
 //	public void createXML(String objectName,String fileName) {
@@ -356,6 +357,16 @@ public class FileXMLModel extends FilesXMLGlobal{
 		}
 		return models;
 	}//fin getModels
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void setModels(ArrayList<Model> arrayModel) {
+		for (int i = 0; i < arrayModel.size(); i++) {
+			this.arrayModels.add(arrayModel.get(i).getName());
+		}
+	}
+	public ArrayList<String> getArrayModels(){
+		return this.arrayModels;
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	
 	public Object [][] getDataMatrixModel(){
 		return this.data;
