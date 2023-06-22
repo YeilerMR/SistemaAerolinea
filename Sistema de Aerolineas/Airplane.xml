@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Airplane>
+	<Avion registration="12345">
+		<airlines>KencirioA</airlines>
+		<models>AirBus</models>
+		<year>2011</year>
+	</Avion>
+</Airplane>
