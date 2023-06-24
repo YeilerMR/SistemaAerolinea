@@ -241,7 +241,7 @@ public class GUI_Airplane extends JFrame implements ActionListener{
 	}
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public void setSCPAirplane(JTable tAirplane) {
-		scpAirplane = new JScrollPane();
+		scpAirplane = new JScrollPane(tAirplane);
 		scpAirplane.setBounds(511, 133, 374, 202);
 		scpAirplane.setViewportView(getTAirplane());
 	}

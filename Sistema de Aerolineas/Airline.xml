@@ -1,5 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><Airline>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Airline>
 	<Aerolinea name="Emirates">
 		<operationC>Qatar</operationC>
 	</Aerolinea>
-<Aerolinea name="KencirioA"><operationC>San jose</operationC></Aerolinea><Aerolinea name="Atlas"><operationC>Virginia</operationC></Aerolinea></Airline>
+	<Aerolinea name="KencirioA">
+		<operationC>San jose</operationC>
+	</Aerolinea>
+	<Aerolinea name="Atlas">
+		<operationC>Virginia</operationC>
+	</Aerolinea>
+</Airline>

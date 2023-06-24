@@ -1,6 +1,5 @@
 package data;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,16 +19,15 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import domain.Airplane;
+import domain.Flight;
 
-public class FilesXMLAirplane extends FilesXMLGlobal{
+public class FilesXMLFlight extends FilesXMLGlobal{
 
-	private Airplane airplane;
+	private Flight flight;
 	private String data[][];
-	private ArrayList<String> arrayAirplanes= new ArrayList<String>();
-	public FilesXMLAirplane() {}
+	public FilesXMLFlight() {}
 	
-	public void updateAirplane(String fileName, String elementType, String[] dataName, String[] data, String nameChange) {
+	public void updateFlight(String fileName, String elementType, String[] dataName, String[] data, String nameChange) {
 		try {
 			File file= new File(fileName);
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -41,11 +39,11 @@ public class FilesXMLAirplane extends FilesXMLGlobal{
 				Node node= nodes.item(i);
 				if (node.getNodeType()==Node.ELEMENT_NODE) {
 					Element element= (Element) node;
-					String userAttribute= element.getAttribute("name");
+					String userAttribute= element.getAttribute("nFlight");
 					System.out.println("\nupdateBrand: "+data[0]+"\nuserAttribute: "+userAttribute);
 					if (userAttribute.equalsIgnoreCase(nameChange)) {
 						//System.out.println("Si es igual a::"+data[0]);
-						element.setAttribute("name", data[0]);
+						element.setAttribute("nFlight", data[0]);
 						for (int j = 1; j < dataName.length; j++) {
 							NodeList childNodes= element.getElementsByTagName(dataName[j]);
 							Element childElement= (Element)childNodes.item(0); 
@@ -67,11 +65,11 @@ public class FilesXMLAirplane extends FilesXMLGlobal{
 			e.printStackTrace();
 		}
 	}//fin de updateBrand
-	
-	public ArrayList<Airplane> readXMLToArrayList(String address, String elementType) {
+
+public ArrayList<Flight> readXMLToArrayList(String address, String elementType) {
 		
-		ArrayList<Airplane> arrayAirplanes;
-		arrayAirplanes = new ArrayList<Airplane>();
+		ArrayList<Flight> arrayFlights;
+		arrayFlights = new ArrayList<Flight>();
 	
 		try {
 			File inputFile = new File(address);
@@ -89,62 +87,69 @@ public class FilesXMLAirplane extends FilesXMLGlobal{
 					
 					Element eElement = (Element) nNode;
 
-					airplane= new Airplane(eElement.getAttribute("registration"),
-							eElement.getElementsByTagName("airlines").item(0).getTextContent(),
-							eElement.getElementsByTagName("models").item(0).getTextContent(),
-							eElement.getElementsByTagName("year").item(0).getTextContent());
-					
-					arrayAirplanes.add(airplane);
+					flight= new Flight(eElement.getAttribute("nFlight"),
+							eElement.getElementsByTagName("cityE").item(0).getTextContent(), 
+							eElement.getElementsByTagName("hourE").item(0).getTextContent(), 
+							eElement.getElementsByTagName("dateE").item(0).getTextContent(), 
+							eElement.getElementsByTagName("airplane").item(0).getTextContent(), 
+							eElement.getElementsByTagName("cityA").item(0).getTextContent(),
+							eElement.getElementsByTagName("hourA").item(0).getTextContent(), 
+							eElement.getElementsByTagName("dateA").item(0).getTextContent(), 
+							Integer.parseInt(eElement.getElementsByTagName("pClassB").item(0).getTextContent()), 
+							Integer.parseInt(eElement.getElementsByTagName("pClassT").item(0).getTextContent()), 
+							Integer.parseInt(eElement.getElementsByTagName("pClassE").item(0).getTextContent()));
+//				
+//							eElement.getElementsByTagName("airlines").item(0).getTextContent(),
+//							eElement.getElementsByTagName("models").item(0).getTextContent(),
+//							eElement.getElementsByTagName("year").item(0).getTextContent());
+//					
+					arrayFlights.add(flight);
 				}
 			}
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return arrayAirplanes;
+		return arrayFlights;
 	}//fin de readXMLToArrayList
-	
-	public void setDataMatrixAirplane(ArrayList<Airplane> arrayAirplanes) {
-		data= new String[arrayAirplanes.size()][4];
-		for (int i = 0; i < this.data.length; i++) {
-			data[i][0]= arrayAirplanes.get(i).getRegistration();
-			data[i][1]= arrayAirplanes.get(i).getArrayAirlines();
-			data[i][2]= arrayAirplanes.get(i).getArrayModels();
-			data[i][3]= arrayAirplanes.get(i).getYear();
-		}
-	}
-	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	public void setAirplane(ArrayList<Airplane> arrayAirplane) {
-		for (int i = 0; i < arrayAirplane.size(); i++) {
-			this.arrayAirplanes.add(arrayAirplane.get(i).getRegistration());
-		}
-	}
-	public ArrayList<String> getArrayAirplanes(){
-		return this.arrayAirplanes;
-	}
-	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	public String getAirplanes(ArrayList<Airplane> arrayAirplanes) {
-		String airplanes="";
-		for (Airplane air : arrayAirplanes) {
-			airplanes+= air.toString();
-		}
-		return airplanes;
-	}
 
-	public String[][] getDataMatrixAirplane(){
+	public void setDataMatrixFlight(ArrayList<Flight> arrayFlights) {
+		data= new String[arrayFlights.size()][11];
+		for (int i = 0; i < this.data.length; i++) {
+			data[i][0]= arrayFlights.get(i).getnFlight();
+			data[i][1]= arrayFlights.get(i).getCityE();
+			data[i][2]= arrayFlights.get(i).getHourE();
+			data[i][3]= arrayFlights.get(i).getDateE();
+			data[i][4]= arrayFlights.get(i).getAirplane();
+			data[i][5]= arrayFlights.get(i).getCityA();
+			data[i][6]= arrayFlights.get(i).getHourA();
+			data[i][7]= arrayFlights.get(i).getDateA();
+			//puede cambiar en el futuro
+			data[i][8]= ""+arrayFlights.get(i).getpClassB();
+			data[i][9]= ""+arrayFlights.get(i).getpClassT();
+			data[i][10]= ""+arrayFlights.get(i).getpClassE();
+		}
+	}
+	public String getFlights(ArrayList<Flight> arrayFlights) {
+		String flights= "";
+		for (Flight f : arrayFlights) {
+			flights+= f.toString();
+		}
+		return flights;
+	}
+	public String[][] getDataMatrixFligh(){
 		return this.data;
 	}
 	
-	public ArrayList<Airplane> readAirplane(ArrayList<Airplane> arrayAirplane, String dataTXT){
-		ArrayList<Airplane> arrayConsult= new ArrayList<Airplane>();
-		
-		for (int i = 0; i < arrayAirplane.size(); i++) {
-			if (dataTXT.equalsIgnoreCase(arrayAirplane.get(i).getRegistration())) {
-				System.out.println("Si son iguales["+dataTXT+"] y {"+arrayAirplane.get(i).getRegistration()+"}");
-				arrayConsult.add(arrayAirplane.get(i));
+	public ArrayList<Flight> readFlight(ArrayList<Flight> arrayFlight,String dataTXT){
+		ArrayList<Flight> arrayConsult= new ArrayList<Flight>();	
+	
+		for (int i = 0; i < arrayFlight.size(); i++) {
+			if (dataTXT.equalsIgnoreCase(arrayFlight.get(i).getnFlight())) {
+				System.out.println("Si son iguales["+dataTXT+"] y {"+arrayFlight.get(i).getnFlight()+"}");
+				arrayConsult.add(arrayFlight.get(i));
 			}
 		}
 		System.out.println("Tamaño de arrayConsult"+arrayConsult.size());
 		return arrayConsult;
 	}
-	
-}//fin de FilesXMLAirplane
+}

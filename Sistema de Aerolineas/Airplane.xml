@@ -4,4 +4,9 @@
 		<models>AirBus</models>
 		<year>2011</year>
 	</Avion>
-<Avion registration="6789"><airlines>Atlas</airlines><models>AEC</models><year>2020</year></Avion></Airplane>
+	<Avion registration="6789">
+		<airlines>Atlas</airlines>
+		<models>AEC</models>
+		<year>2020</year>
+	</Avion>
+<Avion registration="p-09"><airlines>Emirates</airlines><models>AEC</models><year>2020</year></Avion></Airplane>

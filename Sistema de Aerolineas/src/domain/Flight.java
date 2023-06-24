@@ -2,68 +2,70 @@ package domain;
 
 public class Flight {
 
-	private int nFlight;
-	private String departureCity;
-	private String date;
-	private String hour;
-	private String arrivalCity;
+	private String nFlight;
+	private String cityE;
+	private String hourE;
+	private String dateE;
+	
 	private String airplane;
-	private double priceSeat;
+	private String cityA;
+	private String hourA;
+	private String dateA;
+	//private String arrivalCity;
+	private int pClassB;
+	private int pClassT;
+	private int pClassE;
 	
 	public Flight() {
 		
 	}
 
-	public Flight(int nFlight, String departureCity, String date, String hour, String arrivalCity, String airplane,
-			double priceSeat) {
-		//super();
+	public Flight(String nFlight, String cityE, String hourE, String dateE, String airplane, String cityA, String hourA,
+			String dateA, int pClassB, int pClassT, int pClassE) {
+		super();
 		this.nFlight = nFlight;
-		this.departureCity = departureCity;
-		this.date = date;
-		this.hour = hour;
-		this.arrivalCity = arrivalCity;
+		this.cityE = cityE;
+		this.hourE = hourE;
+		this.dateE = dateE;
 		this.airplane = airplane;
-		this.priceSeat = priceSeat;
+		this.cityA = cityA;
+		this.hourA = hourA;
+		this.dateA = dateA;
+		this.pClassB = pClassB;
+		this.pClassT = pClassT;
+		this.pClassE = pClassE;
 	}
 
-	public int getnFlight() {
+	public String getnFlight() {
 		return nFlight;
 	}
 
-	public void setnFlight(int nFlight) {
+	public void setnFlight(String nFlight) {
 		this.nFlight = nFlight;
 	}
 
-	public String getDepartureCity() {
-		return departureCity;
+	public String getCityE() {
+		return cityE;
 	}
 
-	public void setDepartureCity(String departureCity) {
-		this.departureCity = departureCity;
+	public void setCityE(String cityE) {
+		this.cityE = cityE;
 	}
 
-	public String getDate() {
-		return date;
+	public String getHourE() {
+		return hourE;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+	public void setHourE(String hourE) {
+		this.hourE = hourE;
 	}
 
-	public String getHour() {
-		return hour;
+	public String getDateE() {
+		return dateE;
 	}
 
-	public void setHour(String hour) {
-		this.hour = hour;
-	}
-
-	public String getArrivalCity() {
-		return arrivalCity;
-	}
-
-	public void setArrivalCity(String arrivalCity) {
-		this.arrivalCity = arrivalCity;
+	public void setDateE(String dateE) {
+		this.dateE = dateE;
 	}
 
 	public String getAirplane() {
@@ -74,13 +76,74 @@ public class Flight {
 		this.airplane = airplane;
 	}
 
-	public double getPriceSeat() {
-		return priceSeat;
+	public String getCityA() {
+		return cityA;
 	}
 
-	public void setPriceSeat(double priceSeat) {
-		this.priceSeat = priceSeat;
+	public void setCityA(String cityA) {
+		this.cityA = cityA;
 	}
 
+	public String getHourA() {
+		return hourA;
+	}
+
+	public void setHourA(String hourA) {
+		this.hourA = hourA;
+	}
+
+	public String getDateA() {
+		return dateA;
+	}
+
+	public void setDateA(String dateA) {
+		this.dateA = dateA;
+	}
+
+	public int getpClassB() {
+		return pClassB;
+	}
+
+	public void setpClassB(int pClassB) {
+		this.pClassB = pClassB;
+	}
+
+	public int getpClassT() {
+		return pClassT;
+	}
+
+	public void setpClassT(int pClassT) {
+		this.pClassT = pClassT;
+	}
+
+	public int getpClassE() {
+		return pClassE;
+	}
+
+	public void setpClassE(int pClassE) {
+		this.pClassE = pClassE;
+	}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public String []getDataName(){
+		String[] dataName= {"nFlight","cityE","hourE","dateE",
+				"airplane","cityA","hourA","dateA","pClassB",
+				"pClassT","pClassE"};
+		return dataName;
+	}
+	public String []getData(){
+		String[] data= {nFlight,cityE,hourE,dateE,airplane,cityA,
+					hourA,dateA,""+pClassB,""+pClassT,""+pClassE};
+		return data;
+	}
+
+	@Override
+	public String toString() {
+		return "Flight [nFlight=" + nFlight + ", cityE=" + cityE + ", hourE=" + hourE + ", dateE=" + dateE
+				+ ", airplane=" + airplane + ", cityA=" + cityA + ", hourA=" + hourA + ", dateA=" + dateA + ", pClassB="
+				+ pClassB + ", pClassT=" + pClassT + ", pClassE=" + pClassE + "]";
+	}
+	
+	
+	
 	//falta el toString
 }

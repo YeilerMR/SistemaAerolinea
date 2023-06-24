@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Flight>
+	<Vuelo nFlight="547">
+		<cityE>Horquetas</cityE>
+		<hourE>5:00</hourE>
+		<dateE>23/5/2023</dateE>
+		<airplane>12345</airplane>
+		<cityA>Ticari</cityA>
+		<hourA>6:00</hourA>
+		<dateA>27/5/2023</dateA>
+		<pClassB>12000</pClassB>
+		<pClassT>7000</pClassT>
+		<pClassE>3000</pClassE>
+	</Vuelo>
+</Flight>

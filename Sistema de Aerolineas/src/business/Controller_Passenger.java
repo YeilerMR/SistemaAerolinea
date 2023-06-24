@@ -24,7 +24,7 @@ public class Controller_Passenger implements ActionListener{
 		gui=new GUI_Passenger(user);
 		
 		fXMLPassenger= new FilesXMLPassenger();
-		fXMLPassenger.createXML(nameFile, elementType);
+		fXMLPassenger.createXML(elementType, nameFile);
 		
 		initializer();
 	}

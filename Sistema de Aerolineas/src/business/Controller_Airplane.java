@@ -34,7 +34,7 @@ public class Controller_Airplane implements ActionListener{
 		gui= new GUI_Airplane(user);
 		
 		fXMLAirplane= new FilesXMLAirplane();
-		fXMLAirplane.createXML("Airplane", elementType);
+		fXMLAirplane.createXML("Airplane", nameFile);
 		
 		//carga las aerolineas al comboBox
 		filesXMLAirline= new FilesXMLAirline();
