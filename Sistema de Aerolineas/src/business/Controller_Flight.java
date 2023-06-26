@@ -72,6 +72,7 @@ public class Controller_Flight implements ActionListener{
 		}
 		if (e.getSource()==gui.getBDelete()) {
 			gui.showMessage("eliminar");
+			deleteFlight();
 		}
 		if (e.getSource()==gui.getBNumber()) {
 			gui.showMessage("agregarNdeVuelo");
@@ -111,39 +112,8 @@ public class Controller_Flight implements ActionListener{
 		
 	}
 
-	public void addFlight() {
+	private void addFlight() {
 		//capturar datos del jCalendary
-		addDate();
-		//++++++++++++++++++++++
-		dataTXT=gui.getTxtNFlight().getText();
-		String dataCityE=gui.getTxtCityE().getText();
-		String dataCityA=gui.getTxtCityA().getText();
-		String dataABox= ""+gui.getComboAirplane().getSelectedItem();
-		
-		int dataClassB=Integer.parseInt(gui.getTxtClassB().getText());
-		int dataClassT=Integer.parseInt(gui.getTxtClassT().getText());
-		int dataClassE=Integer.parseInt(gui.getTxtClassE().getText());
-		
-		//Debo validar que las fechas no tengan incongruencias
-
-		if (fXMLFlight.isEmpty(dataTXT)||fXMLFlight.isEmpty(dataCityE)||fXMLFlight.isEmpty(dataHourE)||fXMLFlight.isEmpty(dataDateE)||
-			fXMLFlight.isEmpty(dataABox)||fXMLFlight.isEmpty(dataCityA)||fXMLFlight.isEmpty(dataHourA)||fXMLFlight.isEmpty(dataDateA)||
-			fXMLFlight.isEmpty(""+dataClassB)||fXMLFlight.isEmpty(""+dataClassT)||fXMLFlight.isEmpty(""+dataClassE)) {
-			gui.showMessage("No puede dejar espacios en blancos.");
-		}else {
-			if (fXMLFlight.checkExists(nameFile, elementType, dataTXT)) {
-				gui.showMessage("Ya existe un vuelo con esta matricula");
-			}else {
-				flight= new Flight(dataTXT,dataCityE,dataHourE, dataDateE,dataABox,dataCityA,dataHourA,dataDateA,dataClassB,dataClassT,dataClassE);
-				fXMLFlight.writeXML(nameFile, elementType, flight.getDataName(), flight.getData());
-				gui.clearForm();
-				gui.showMessage("Se agrego un vuelo exitosamente");
-			}
-		}
-		
-	}//fin de addFlight
-	
-	public void updateFlight() {
 		addDate();
 		//++++++++++++++++++++++
 		dataTXT=gui.getTxtNFlight().getText();
@@ -163,28 +133,78 @@ public class Controller_Flight implements ActionListener{
 			gui.showMessage("No puede dejar espacios en blancos.");
 		}else {
 			if (fXMLFlight.checkExists(nameFile, elementType, dataTXT)) {
+				gui.showMessage("Ya existe un vuelo con esta matricula");
+			}else {
 				flight= new Flight(dataTXT,dataCityE,dataHourE, dataDateE,dataABox,dataCityA,dataHourA,dataDateA,dataClassB,dataClassT,dataClassE);
+				fXMLFlight.writeXML(nameFile, elementType, flight.getDataName(), flight.getData());
+				gui.clearForm();
+				gui.showMessage("Se agrego un vuelo exitosamente");
+			}
+		}
+		
+	}//fin de addFlight
+	
+	private void updateFlight() {
+		addDate();
+		//++++++++++++++++++++++
+		String dataTXTCompare=gui.getTxtNFlightCompare().getText();
+		String dataCityE=gui.getTxtCityE().getText();
+		String dataCityA=gui.getTxtCityA().getText();
+		String dataABox= ""+gui.getComboAirplane().getSelectedItem();
+		
+		int dataClassB=Integer.parseInt(gui.getTxtClassB().getText());
+		int dataClassT=Integer.parseInt(gui.getTxtClassT().getText());
+		int dataClassE=Integer.parseInt(gui.getTxtClassE().getText());
+		
+		//Debo validar que las fechas no tengan incongruencias
+
+		gui.showMessage(dataTXTCompare);
+		
+		if (fXMLFlight.isEmpty(dataTXTCompare)||fXMLFlight.isEmpty(dataCityE)||fXMLFlight.isEmpty(dataHourE)||fXMLFlight.isEmpty(dataDateE)||
+			dataABox.equals("Vacio")||fXMLFlight.isEmpty(dataCityA)||fXMLFlight.isEmpty(dataHourA)||fXMLFlight.isEmpty(dataDateA)||
+			fXMLFlight.isEmpty(""+dataClassB)||fXMLFlight.isEmpty(""+dataClassT)||fXMLFlight.isEmpty(""+dataClassE)) {
+			gui.showMessage("No puede dejar espacios en blancos.");
+		}else {
+			if (fXMLFlight.checkExistsFlight(nameFile, elementType, dataTXTCompare)) {
+				System.out.println("Bandera: entro al if del updateFlight");
+				flight= new Flight(dataTXTCompare,dataCityE,dataHourE, dataDateE,dataABox,dataCityA,dataHourA,dataDateA,dataClassB,dataClassT,dataClassE);
 				
-				fXMLFlight.updateFlight(nameFile, elementType, flight.getDataName(), flight.getData(), dataTXT);
+				fXMLFlight.updateFlight(nameFile, elementType, flight.getDataName(), flight.getData(), dataTXTCompare);
 				gui.clearForm();
 			}else {
-				gui.showMessage("No hay un avion ["+dataTXT+"] registrado");
+				gui.showMessage("No hay un avion ["+dataTXTCompare+"] registrado");
 			}
 		}
 	}//fin de updateFlight
 	
-	public void consultFlight() {
-		dataTXT=gui.getTxtNFlight().getText();
+	private void consultFlight() {
+		String dataTXTCompare=gui.getTxtNFlightCompare().getText();//gui.getTxtNFlight().getText();
 		arrayFlights= fXMLFlight.readXMLToArrayList(nameFile, elementType);
 		
 		fXMLFlight.setDataMatrixFlight(arrayFlights);
-		if (fXMLFlight.isEmpty(dataTXT)) {
+		if (fXMLFlight.isEmpty(dataTXTCompare)) {
 			gui.getDTMFlight().setDataVector(fXMLFlight.getDataMatrixFligh(), gui.getColumnsName());
 		}else {
-			arrayFlights= fXMLFlight.readFlight(arrayFlights, dataTXT);
+			arrayFlights= fXMLFlight.readFlight(arrayFlights, dataTXTCompare);
 			fXMLFlight.setDataMatrixFlight(arrayFlights);
 			gui.getDTMFlight().setDataVector(fXMLFlight.getDataMatrixFligh(), gui.getColumnsName());
 			gui.clearForm();
 		}
 	}//fin de consultFlight
+	private void deleteFlight() {
+		String dataTXTCompare=gui.getTxtNFlightCompare().getText();
+
+		if (fXMLFlight.isEmpty(dataTXTCompare)) {
+			gui.showMessage("No dejar el espacio 'N° de Vuelo' en blanco");
+		}else {
+			if(fXMLFlight.checkExistsFlight(nameFile, elementType, dataTXTCompare)) {
+				fXMLFlight.deleteFromXML(nameFile, elementType, dataTXTCompare);
+				gui.showMessage("Se elimino el vuelo con n°["+dataTXTCompare+"] Correctamente");
+				gui.clearForm();
+				
+			}else {
+				gui.showMessage("No se encontro el vuelo con n°["+dataTXTCompare+"]");
+			}
+		}
+	}
 }//fin de Controller_Flight

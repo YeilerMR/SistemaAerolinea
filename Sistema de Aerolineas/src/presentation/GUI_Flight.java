@@ -72,6 +72,8 @@ public class GUI_Flight extends JFrame {
 	
 	private String[][] dataFlight;
 	private JLabel lInfo;
+	private JLabel lNFlightCompare;
+	private JTextField txtNFlightCompare;
 	
 	
 	
@@ -85,8 +87,10 @@ public class GUI_Flight extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		if (lXML.checkTypeUser(user)) {
+
 			contentPane.add(getBModify());
 			contentPane.add(getBDelete());
+			
 		}
 		//setTXTNFlight(randNum);
 		
@@ -129,6 +133,8 @@ public class GUI_Flight extends JFrame {
 		contentPane.add(getSCPFlight());
 		contentPane.add(getLInfo());
 		contentPane.add(getBNumber());
+		contentPane.add(getLNFlightCompare());
+		contentPane.add(getTxtNFlightCompare());
 		
 		setVisible(true);
 	}
@@ -176,6 +182,7 @@ public class GUI_Flight extends JFrame {
 		if (dcDateE == null) {
 			dcDateE = new JDateChooser();
 			dcDateE.setBounds(175, 318, 118, 32);
+			//dcDateE.setEnabled(false);
 		}
 		return dcDateE;
 	}
@@ -215,6 +222,8 @@ public class GUI_Flight extends JFrame {
 		if (dcDateA == null) {
 			dcDateA = new JDateChooser();
 			dcDateA.setBounds(476, 318, 118, 32);
+			
+			//dcDateA.setEnabled(false);
 		}
 		return dcDateA;
 	}
@@ -222,7 +231,7 @@ public class GUI_Flight extends JFrame {
 		if (bAdd == null) {
 			bAdd = new JButton("Agregar");
 			bAdd.setFont(new Font("Tahoma", Font.BOLD, 15));
-			bAdd.setBounds(308, 395, 110, 32);
+			bAdd.setBounds(449, 390, 110, 32);
 		}
 		return bAdd;
 	}
@@ -230,15 +239,15 @@ public class GUI_Flight extends JFrame {
 		if (bModify == null) {
 			bModify = new JButton("Modificar");
 			bModify.setFont(new Font("Tahoma", Font.BOLD, 15));
-			bModify.setBounds(463, 395, 110, 32);
+			bModify.setBounds(269, 481, 110, 32);
 		}
 		return bModify;
 	}
 	public JButton getBConsult() {
 		if (bConsult == null) {
 			bConsult = new JButton("Consultar");
-			bConsult.setFont(new Font("Tahoma", Font.BOLD, 15));
-			bConsult.setBounds(614, 395, 110, 32);
+			bConsult.setFont(new Font("Tahoma", Font.BOLD, 14));
+			bConsult.setBounds(157, 481, 102, 32);
 		}
 		return bConsult;
 	}
@@ -246,7 +255,7 @@ public class GUI_Flight extends JFrame {
 		if (bDelete == null) {
 			bDelete = new JButton("Eliminar");
 			bDelete.setFont(new Font("Tahoma", Font.BOLD, 15));
-			bDelete.setBounds(463, 449, 110, 32);
+			bDelete.setBounds(29, 481, 110, 32);
 		}
 		return bDelete;
 	}
@@ -359,7 +368,7 @@ public class GUI_Flight extends JFrame {
 		if (lInfo == null) {
 			lInfo = new JLabel("Informacion");
 			lInfo.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			lInfo.setBounds(467, 495, 138, 39);
+			lInfo.setBounds(449, 495, 138, 39);
 		}
 		return lInfo;
 	}
@@ -378,6 +387,7 @@ public class GUI_Flight extends JFrame {
 		txtClassB.setText("");
 		txtClassT.setText("");
 		txtClassE.setText("");
+		txtNFlightCompare.setText("");
 		//++++++++++++++++++++++
 	}
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -431,5 +441,21 @@ public class GUI_Flight extends JFrame {
 			bNumber.setBounds(287, 85, 64, 32);
 		}
 		return bNumber;
+	}
+	public JLabel getLNFlightCompare() {
+		if (lNFlightCompare == null) {
+			lNFlightCompare = new JLabel("N° Vuelo:");
+			lNFlightCompare.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lNFlightCompare.setBounds(58, 413, 81, 39);
+		}
+		return lNFlightCompare;
+	}
+	public JTextField getTxtNFlightCompare() {
+		if (txtNFlightCompare == null) {
+			txtNFlightCompare = new JTextField();
+			txtNFlightCompare.setColumns(10);
+			txtNFlightCompare.setBounds(157, 419, 102, 32);
+		}
+		return txtNFlightCompare;
 	}
 }

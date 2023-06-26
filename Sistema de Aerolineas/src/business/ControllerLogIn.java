@@ -72,6 +72,7 @@ public class ControllerLogIn implements ActionListener {
 				} else {
 					JOptionPane.showMessageDialog(null, "El usuario está inactivo.");
 				}
+				//System.out.println("Entro al e.get del login");
 				new Controller_Main(user);
 				//logIn.dispose();
 			} else {

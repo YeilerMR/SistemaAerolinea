@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Ticket>
+	<Tiquete nTicket="123">
+		<passport>123</passport>
+		<nFlight>547</nFlight>
+		<sType>Ejecutivo</sType>
+	</Tiquete>
+	<Tiquete nTicket="456">
+		<passport>123</passport>
+		<nFlight>547</nFlight>
+		<sType>Economico</sType>
+	</Tiquete>
+</Ticket>

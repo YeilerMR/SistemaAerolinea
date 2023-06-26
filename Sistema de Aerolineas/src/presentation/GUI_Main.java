@@ -19,8 +19,8 @@ public class GUI_Main extends JFrame {
 	private JButton btnMAirline;
 	private JButton btnMAirplane;
 	private JButton btnMFlights;
-	private JLabel lblNewLabel;
 	private JButton btnMPassenger;
+	private JButton bTicket;
 
 	/**
 	 * Launch the application.
@@ -43,15 +43,15 @@ public class GUI_Main extends JFrame {
 		contentPane.add(getBtnMAirline());
 		contentPane.add(getBtnMAirplane());
 		contentPane.add(getBtnMFlights());
-		contentPane.add(getLblNewLabel());
 		contentPane.add(getBtnMPassenger());
+		contentPane.add(getBTicket());
 		setVisible(true);
 	}
 	public JButton getBtnMUser() {
 		if (btnMUser == null) {
 			btnMUser = new JButton("G. de Usuario");
 			btnMUser.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnMUser.setBounds(60, 27, 146, 39);
+			btnMUser.setBounds(10, 54, 146, 39);
 		}
 		return btnMUser;
 	}
@@ -59,7 +59,7 @@ public class GUI_Main extends JFrame {
 		if (btnMbrand == null) {
 			btnMbrand = new JButton("G. de Marca");
 			btnMbrand.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnMbrand.setBounds(60, 100, 146, 39);
+			btnMbrand.setBounds(10, 127, 146, 39);
 		}
 		return btnMbrand;
 	}
@@ -67,7 +67,7 @@ public class GUI_Main extends JFrame {
 		if (btnMModel == null) {
 			btnMModel = new JButton("G. de Modelo");
 			btnMModel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnMModel.setBounds(60, 176, 146, 39);
+			btnMModel.setBounds(201, 52, 146, 39);
 		}
 		return btnMModel;
 	}
@@ -75,7 +75,7 @@ public class GUI_Main extends JFrame {
 		if (btnMAirline == null) {
 			btnMAirline = new JButton("G. de Aerolinea");
 			btnMAirline.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnMAirline.setBounds(60, 251, 146, 39);
+			btnMAirline.setBounds(201, 127, 146, 39);
 		}
 		return btnMAirline;
 	}
@@ -83,7 +83,7 @@ public class GUI_Main extends JFrame {
 		if (btnMAirplane == null) {
 			btnMAirplane = new JButton("G. de Aviones");
 			btnMAirplane.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnMAirplane.setBounds(60, 324, 146, 39);
+			btnMAirplane.setBounds(378, 52, 146, 39);
 		}
 		return btnMAirplane;
 	}
@@ -91,24 +91,24 @@ public class GUI_Main extends JFrame {
 		if (btnMFlights == null) {
 			btnMFlights = new JButton("G. de Vuelos");
 			btnMFlights.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnMFlights.setBounds(60, 399, 146, 39);
+			btnMFlights.setBounds(378, 127, 146, 39);
 		}
 		return btnMFlights;
-	}
-	public JLabel getLblNewLabel() {
-		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("");
-			lblNewLabel.setIcon(new ImageIcon("C:\\Users\\yeile\\Desktop\\Proyecto Aerolinea\\images\\Logo_Company .png"));
-			lblNewLabel.setBounds(258, 27, 447, 411);
-		}
-		return lblNewLabel;
 	}
 	public JButton getBtnMPassenger() {
 		if (btnMPassenger == null) {
 			btnMPassenger = new JButton("G. de Pasajeros");
 			btnMPassenger.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnMPassenger.setBounds(60, 475, 146, 39);
+			btnMPassenger.setBounds(559, 54, 146, 39);
 		}
 		return btnMPassenger;
+	}
+	public JButton getBTicket() {
+		if (bTicket == null) {
+			bTicket = new JButton("G. de Tiquetes");
+			bTicket.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			bTicket.setBounds(559, 127, 146, 39);
+		}
+		return bTicket;
 	}
 }

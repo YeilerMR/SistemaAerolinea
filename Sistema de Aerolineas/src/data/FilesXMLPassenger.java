@@ -27,6 +27,7 @@ public class FilesXMLPassenger extends FilesXMLGlobal{
 
 	private Passenger passenger;
 	private String data[][];
+	private ArrayList<String> arrayPassengers= new ArrayList<String>();
 	
 	public FilesXMLPassenger() {}
 	
@@ -157,6 +158,16 @@ public class FilesXMLPassenger extends FilesXMLGlobal{
 		}
 	}
 	
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	public void setPassengers(ArrayList<Passenger> arrayPassenger) {
+		for (int i = 0; i < arrayPassenger.size(); i++) {
+			this.arrayPassengers.add(arrayPassenger.get(i).getnPassport());
+		}
+	}
+	public ArrayList<String> getArrayPassengers(){
+		return this.arrayPassengers;
+	}
+	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public String getPassengers(ArrayList<Passenger> arrayPassengers) {
 		String passengers="";
 		for (Passenger p : arrayPassengers) {

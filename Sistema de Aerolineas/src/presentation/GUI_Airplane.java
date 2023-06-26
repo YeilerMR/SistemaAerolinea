@@ -226,6 +226,8 @@ public class GUI_Airplane extends JFrame implements ActionListener{
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	public void clearForm() {
 		txtRegistration.setText("");
+		comboAirline.setSelectedIndex(0);
+		comboModel.setSelectedIndex(0);
 		txtYear.setText("");
 	}
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

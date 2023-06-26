@@ -243,6 +243,7 @@ public class GUI_Model extends JFrame implements ActionListener{
 		txtBClass.setText("");
 		txtTClass.setText("");
 		txtEconomic.setText("");
+		comboBrands.setSelectedIndex(0);
 		//fillComboBox(null);
 	}//limpia formulario
 	//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

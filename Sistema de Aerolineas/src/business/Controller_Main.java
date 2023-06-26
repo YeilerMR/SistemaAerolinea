@@ -11,6 +11,7 @@ import data.FilesXMLAirplane;
 import data.FilesXMLBrand;
 import data.FilesXMLFlight;
 import data.FilesXMLPassenger;
+import data.FilesXMLTicket;
 import domain.User;
 import presentation.GUI_Brand;
 import presentation.GUI_Main;
@@ -26,6 +27,7 @@ public class Controller_Main implements ActionListener{
 	private Controller_Airplane cAirplane;
 	private Controller_Flight cFlight;
 	private Controller_Passenger cPassenger;
+	private Controller_Ticket cTicket;
 	
 	private FilesXMLBrand fXMLBrand;
 	private FileXMLModel fXMLModel;
@@ -33,11 +35,13 @@ public class Controller_Main implements ActionListener{
 	private FilesXMLAirplane fXMLAirplane;
 	private FilesXMLFlight fXMLFlight;
 	private FilesXMLPassenger filesXMLPassenger;
+	private FilesXMLTicket fXMLTicket;
 	
 	private User user;
 	
 	public Controller_Main(User user){
 		
+		System.out.println("Entro al Controller_Main");
 		this.user= user;
 		System.out.println(user.getType());
 		gui_M= new GUI_Main();
@@ -63,6 +67,8 @@ public class Controller_Main implements ActionListener{
 		filesXMLPassenger.createXML("Passenger", "Passenger.xml");
 		//fXMLAirplane.createXML("Passenger", "Passenger.xml");
 		
+		fXMLTicket= new FilesXMLTicket();
+		fXMLTicket.createXML("Ticket", "Ticket.xml");
 		
 		initializer();
 	}
@@ -74,6 +80,7 @@ public class Controller_Main implements ActionListener{
 		gui_M.getBtnMAirplane().addActionListener(this);
 		gui_M.getBtnMFlights().addActionListener(this);
 		gui_M.getBtnMPassenger().addActionListener(this);
+		gui_M.getBTicket().addActionListener(this);
 	}
 
 	@Override
@@ -108,6 +115,10 @@ public class Controller_Main implements ActionListener{
 		if (e.getSource()==gui_M.getBtnMPassenger()) {
 			JOptionPane.showMessageDialog(null, "Entra a Pasajeros");
 			cPassenger= new Controller_Passenger(user);
+		}
+		if (e.getSource()==gui_M.getBTicket()) {
+			JOptionPane.showMessageDialog(null, "Entra a Tiquetes");
+			cTicket= new Controller_Ticket(user);
 		}
 		
 	}
