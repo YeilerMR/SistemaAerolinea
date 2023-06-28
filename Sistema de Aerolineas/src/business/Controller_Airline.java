@@ -26,15 +26,14 @@ public class Controller_Airline implements ActionListener{
 	
 	private ArrayList<Airline> arrayAirlines;
 
-	public Controller_Airline(User user,FilesXMLAirplane fileXMLAirplane) {
-		
-		this.filesXMLAirplane= fileXMLAirplane;
+	public Controller_Airline(User user) {
 		
 		gui= new GUI_Airline(user);
 		
 		fXMLAirline= new FilesXMLAirline();
-		fXMLAirline.createXML("Airline", nameFile);
+		fXMLAirline.createXML(elementType, nameFile);
 		
+		filesXMLAirplane= new FilesXMLAirplane();
 		initializer();
 	}
 
@@ -130,7 +129,7 @@ public class Controller_Airline implements ActionListener{
 				gui.showMessage("No puede eliminar una aerolinea asociada.");
 			}else {
 				if (fXMLAirline.checkExists(nameFile, elementType, dataTXT)) {
-					fXMLAirline.deleteFromXML(nameFile, elementType, dataTXT);
+					fXMLAirline.deleteFromXMLAirline(nameFile, elementType, dataTXT);
 					gui.showMessage("Se elimino el modelo ["+dataTXT+"] Correctamente");
 					gui.clearForm();
 				}else {

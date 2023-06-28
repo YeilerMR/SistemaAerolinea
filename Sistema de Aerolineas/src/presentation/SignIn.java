@@ -351,11 +351,13 @@ public class SignIn extends JFrame {
 	public JTextField getTfUser() {
 	    if (tfUser == null) {
 	        tfUser = new JTextField();
+	        
 	        tfUser.setFont(new Font("Tahoma", Font.PLAIN, 13));
 	        tfUser.setForeground(Color.WHITE);
 	        tfUser.setHorizontalAlignment(SwingConstants.LEFT);
 	        tfUser.setBorder(new CompoundBorder(new LineBorder(new Color(145, 145, 145), 0), new EmptyBorder(0, 0, 0, 5)));
 	        tfUser.setBackground(LIGHTER_BACKGROUND);
+	        
 	        tfUser.setBounds(0, 3, 315, 30);
 	    }
 	    return tfUser;

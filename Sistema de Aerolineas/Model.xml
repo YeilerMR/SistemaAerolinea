@@ -1,15 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><Model>
-	
-	<Modelo name="AirBus">
-		<brand>Seven</brand>
-		<bClass>12</bClass>
-		<tClass>23</tClass>
-		<eClass>34</eClass>
-	</Modelo>
-	<Modelo name="Resis">
-		<brand>Honor</brand>
-		<bClass>67</bClass>
-		<tClass>34</tClass>
-		<eClass>12</eClass>
-	</Modelo>
-<Modelo name="AEC"><brand>Resistol</brand><bClass>25</bClass><tClass>70</tClass><eClass>50</eClass></Modelo></Model>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Model><Modelo name="Minivan"><brand>Airbus</brand><bClass>50</bClass><tClass>60</tClass><eClass>70</eClass></Modelo><Modelo name="Crossover"><brand>Boeing</brand><bClass>30</bClass><tClass>50</tClass><eClass>25</eClass></Modelo><Modelo name="Seat"><brand>Manzi</brand><bClass>20</bClass><tClass>50</tClass><eClass>40</eClass></Modelo></Model>

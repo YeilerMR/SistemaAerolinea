@@ -36,9 +36,9 @@ public class Controller_Model implements ActionListener{
 	
 	
 	
-	public Controller_Model(User user, FilesXMLAirplane fileXMLAirplane) {
+	public Controller_Model(User user) {
 		
-		this.filesXMLAirplane= fileXMLAirplane;
+		//this.filesXMLAirplane= fileXMLAirplane;
 		
 		gui= new GUI_Model(user);
 		

@@ -31,18 +31,25 @@ public class Controller_Brand implements ActionListener{
 
 	
 	final String nameFile= "Brand.xml";
+	final String elementType= "Marca";
+	
 	final String nameFModel= "Model.xml";
 	
 	private ArrayList<Brand> arrayBrands;
 	//private ArrayList<Model> arrayModels;
 	
-	public Controller_Brand(User user,FilesXMLBrand filesXMLBrand, FileXMLModel fileXMLModel) {
+	public Controller_Brand(User user) {
 		
-		this.fXMLBrand= filesXMLBrand;
-		this.filesXMLModel= fileXMLModel;
+//		this.fXMLBrand= filesXMLBrand;
+//		this.filesXMLModel= fileXMLModel;
 
 		gui= new GUI_Brand(user);
-		brand= new Brand(gui.getTxtNombre().getText());
+		
+		fXMLBrand= new FilesXMLBrand();
+		fXMLBrand.createXML(elementType, nameFile);
+		
+		filesXMLModel= new FileXMLModel();
+		//brand= new Brand(gui.getTxtNombre().getText());
 		
 		initializer();
 	}

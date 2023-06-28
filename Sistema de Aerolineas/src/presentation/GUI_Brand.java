@@ -1,10 +1,12 @@
 package presentation;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import data.LogicXML;
@@ -26,6 +28,9 @@ import javax.swing.JTable;
 
 public class GUI_Brand extends JFrame{
 
+	private static final Color BUTTON_GREEN = new Color(35, 134, 54);
+	private static final Color BACKGROUND_COLOR = new Color(12, 16, 22);
+	
 	private JPanel contentPane;
 	private JLabel lNombre;
 	private JTextField txtNombre;
@@ -62,6 +67,9 @@ public class GUI_Brand extends JFrame{
 		setBounds(100, 100, 567, 603);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(Color.BLACK));
+		contentPane.setBackground(BACKGROUND_COLOR);
+		setLocationRelativeTo(null);
 
 		
 		if (lXML.checkTypeUser(user)) {
@@ -95,6 +103,7 @@ public class GUI_Brand extends JFrame{
 	public JLabel getLNombre() {
 		if (lNombre == null) {
 			lNombre = new JLabel("Nombre: ");
+			lNombre.setForeground(new Color(255, 255, 255));
 			lNombre.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lNombre.setBounds(54, 78, 119, 45);
 		}
@@ -103,6 +112,9 @@ public class GUI_Brand extends JFrame{
 	public JTextField getTxtNombre() {
 		if (txtNombre == null) {
 			txtNombre = new JTextField();
+			txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			txtNombre.setForeground(new Color(255, 255, 255));
+			txtNombre.setBackground(new Color(41, 90, 45));
 			txtNombre.setBounds(151, 80, 119, 45);
 			txtNombre.setColumns(10);
 		}
@@ -111,15 +123,22 @@ public class GUI_Brand extends JFrame{
 	public JLabel getLGestionM() {
 		if (lGestionM == null) {
 			lGestionM = new JLabel("Gestion de Marcas");
+			lGestionM.setForeground(new Color(255, 255, 255));
 			lGestionM.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lGestionM.setBounds(141, 23, 187, 45);
+			lGestionM.setBounds(215, 10, 187, 45);
 		}
 		return lGestionM;
 	}
 	public JButton getBAgregar() {
 		if (bAgregar == null) {
 			bAgregar = new JButton("Agregar");
-			bAgregar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
+			bAgregar.setForeground(Color.WHITE);
+			bAgregar.setFont(new Font("Tahoma", Font.BOLD, 15));
+			bAgregar.setFocusPainted(false);
+			bAgregar.setBorder(new LineBorder(Color.DARK_GRAY, 1, true));
+			bAgregar.setBackground(BUTTON_GREEN);
+			
 			bAgregar.setBounds(54, 156, 119, 30);
 		}
 		return bAgregar;
@@ -128,7 +147,13 @@ public class GUI_Brand extends JFrame{
 	public JButton getBModificar() {
 		if (bAgregar==null) {
 			bModificar = new JButton("Modificar");
-			bModificar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			
+			bModificar.setForeground(Color.WHITE);
+			bModificar.setFont(new Font("Tahoma", Font.BOLD, 15));
+			bModificar.setFocusPainted(false);
+			bModificar.setBorder(new LineBorder(Color.DARK_GRAY, 1, true));
+			bModificar.setBackground(BUTTON_GREEN);
+			
 			bModificar.setBounds(187, 156, 119, 30);
 		}
 		return bModificar;
@@ -137,7 +162,13 @@ public class GUI_Brand extends JFrame{
 		
 		if (bEliminar == null) {
 			bEliminar = new JButton("Eliminar");
-			bEliminar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			
+			bEliminar.setForeground(Color.WHITE);
+			bEliminar.setFont(new Font("Tahoma", Font.BOLD, 15));
+			bEliminar.setFocusPainted(false);
+			bEliminar.setBorder(new LineBorder(Color.DARK_GRAY, 1, true));
+			bEliminar.setBackground(BUTTON_GREEN);
+			
 			bEliminar.setBounds(187, 215, 119, 30);
 		}
 		return bEliminar;
@@ -145,7 +176,13 @@ public class GUI_Brand extends JFrame{
 	public JButton getBConsultar() {
 		if (bConsultar == null) {
 			bConsultar = new JButton("Consultar");
-			bConsultar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			
+			bConsultar.setForeground(Color.WHITE);
+			bConsultar.setFont(new Font("Tahoma", Font.BOLD, 15));
+			bConsultar.setFocusPainted(false);
+			bConsultar.setBorder(new LineBorder(Color.DARK_GRAY, 1, true));
+			bConsultar.setBackground(BUTTON_GREEN);
+			
 			bConsultar.setBounds(316, 156, 119, 30);
 		}
 		return bConsultar;
@@ -199,6 +236,9 @@ public class GUI_Brand extends JFrame{
 	public JTextField getTxtNew() {
 		if (txtNew == null) {
 			txtNew = new JTextField();
+			txtNew.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			txtNew.setForeground(new Color(255, 255, 255));
+			txtNew.setBackground(new Color(41, 90, 45));
 			txtNew.setColumns(10);
 			txtNew.setBounds(424, 78, 119, 45);
 		}
@@ -207,6 +247,7 @@ public class GUI_Brand extends JFrame{
 	public JLabel getLNuevo() {
 		if (lNuevo == null) {
 			lNuevo = new JLabel("Nuevo:");
+			lNuevo.setForeground(new Color(255, 255, 255));
 			lNuevo.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lNuevo.setBounds(325, 78, 89, 45);
 		}

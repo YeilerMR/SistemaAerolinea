@@ -1,14 +1,39 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><Flight>
-	<Vuelo nFlight="547">
-		<cityE>Horquetas</cityE>
-		<hourE>5:00</hourE>
-		<dateE>23/5/2023</dateE>
-		<airplane>12345</airplane>
-		<cityA>Ticari</cityA>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Flight>
+	<Vuelo nFlight="597">
+		<cityE>San jose</cityE>
+		<hourE>7:00</hourE>
+		<dateE>25/5/2023</dateE>
+		<airplane>P-09</airplane>
+		<cityA>Madrid</cityA>
 		<hourA>6:00</hourA>
-		<dateA>27/5/2023</dateA>
-		<pClassB>12000</pClassB>
-		<pClassT>7000</pClassT>
-		<pClassE>3000</pClassE>
+		<dateA>26/5/2023</dateA>
+		<pClassB>120000</pClassB>
+		<pClassT>40000</pClassT>
+		<pClassE>25000</pClassE>
+	</Vuelo>
+	<Vuelo nFlight="60">
+		<cityE>Managua</cityE>
+		<hourE>5:50</hourE>
+		<dateE>28/5/2023</dateE>
+		<airplane>CR-090</airplane>
+		<cityA>Cali</cityA>
+		<hourA>12:30</hourA>
+		<dateA>30/5/2023</dateA>
+		<pClassB>90000</pClassB>
+		<pClassT>30000</pClassT>
+		<pClassE>15000</pClassE>
+	</Vuelo>
+	<Vuelo nFlight="258">
+		<cityE>Guapiles</cityE>
+		<hourE>12:00</hourE>
+		<dateE>26/5/2023</dateE>
+		<airplane>780</airplane>
+		<cityA>Guanacaste</cityA>
+		<hourA>7:00</hourA>
+		<dateA>26/5/2023</dateA>
+		<pClassB>50000</pClassB>
+		<pClassT>29000</pClassT>
+		<pClassE>12000</pClassE>
 	</Vuelo>
 </Flight>

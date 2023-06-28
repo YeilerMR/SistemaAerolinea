@@ -138,9 +138,9 @@ public class Flight {
 
 	@Override
 	public String toString() {
-		return "Flight [nFlight=" + nFlight + ", cityE=" + cityE + ", hourE=" + hourE + ", dateE=" + dateE
-				+ ", airplane=" + airplane + ", cityA=" + cityA + ", hourA=" + hourA + ", dateA=" + dateA + ", pClassB="
-				+ pClassB + ", pClassT=" + pClassT + ", pClassE=" + pClassE + "]";
+		return "\nNumero de Vuelo: " + nFlight + "\nCiudad de Salida: " + cityE + "\nHora de Salida: " + hourE + "\nFecha de Salida:" + dateE
+				+ "\nPlaca de Avion: " + airplane + "\nCiudad de Arribo: " + cityA + "\nHora de Arribo: " + hourA + "\nFecha de Arribo: " + dateA; 
+				//+ "Precio"+ pClassB + ", pClassT=" + pClassT + ", pClassE=" + pClassE + "]";
 	}
 	
 	

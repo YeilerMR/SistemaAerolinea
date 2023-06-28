@@ -1,12 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><Airplane>
-	<Avion registration="12345">
-		<airlines>KencirioA</airlines>
-		<models>AirBus</models>
-		<year>2011</year>
-	</Avion>
-	<Avion registration="6789">
-		<airlines>Atlas</airlines>
-		<models>AEC</models>
-		<year>2020</year>
-	</Avion>
-<Avion registration="p-09"><airlines>Emirates</airlines><models>AEC</models><year>2020</year></Avion><Avion registration="MO-17"><airlines>KencirioA</airlines><models>Resis</models><year>2023</year></Avion></Airplane>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Airplane><Avion registration="P-09"><airlines>Skyway</airlines><models>Minivan</models><year>2020</year></Avion><Avion registration="CR-090"><airlines>Sansa</airlines><models>Minivan</models><year>2023</year></Avion><Avion registration="780"><airlines>Air Caribe</airlines><models>Crossover</models><year>2006</year></Avion></Airplane>

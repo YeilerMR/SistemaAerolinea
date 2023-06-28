@@ -1,10 +1,12 @@
 package presentation;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import data.LogicXML;
@@ -24,8 +26,11 @@ import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class GUI_Airplane extends JFrame implements ActionListener{
+public class GUI_Airplane extends JFrame{
 
+	private static final Color BUTTON_GREEN = new Color(35, 134, 54);
+	private static final Color BACKGROUND_COLOR = new Color(12, 16, 22);
+	
 	private JPanel contentPane;
 	private JLabel lRegistration;
 	private JTextField txtRegistration;
@@ -68,6 +73,9 @@ public class GUI_Airplane extends JFrame implements ActionListener{
 		setBounds(100, 100, 948, 542);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(Color.BLACK));
+		contentPane.setBackground(BACKGROUND_COLOR);
+		setLocationRelativeTo(null);
 		
 		if (lXML.checkTypeUser(user)) {
 			contentPane.add(getBModify());
@@ -104,6 +112,7 @@ public class GUI_Airplane extends JFrame implements ActionListener{
 	public JLabel getLRegistration() {
 		if (lRegistration == null) {
 			lRegistration = new JLabel("Matricula:");
+			lRegistration.setForeground(new Color(255, 255, 255));
 			lRegistration.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lRegistration.setBounds(54, 78, 119, 45);
 		}
@@ -112,14 +121,17 @@ public class GUI_Airplane extends JFrame implements ActionListener{
 	public JTextField getTxtRegistration() {
 		if (txtRegistration == null) {
 			txtRegistration = new JTextField();
-			txtRegistration.setBounds(295, 78, 119, 45);
+			txtRegistration.setBackground(new Color(41, 90, 45));
+			txtRegistration.setForeground(new Color(255, 255, 255));
+			txtRegistration.setBounds(295, 78, 119, 38);
 			txtRegistration.setColumns(10);
 		}
 		return txtRegistration;
 	}
 	public JLabel getLGestionM() {
 		if (lGestionM == null) {
-			lGestionM = new JLabel("Gestion de Modelos");
+			lGestionM = new JLabel("Gestion de Aviones");
+			lGestionM.setForeground(new Color(255, 255, 255));
 			lGestionM.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lGestionM.setBounds(141, 23, 187, 45);
 		}
@@ -128,25 +140,28 @@ public class GUI_Airplane extends JFrame implements ActionListener{
 	public JButton getBAdd() {
 		if (bAdd == null) {
 			bAdd = new JButton("Agregar");
-			bAdd.addActionListener(this);
-			bAdd.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			//bAdd.addActionListener(this);
+			bAdd.setForeground(Color.WHITE);
+			bAdd.setFont(new Font("Tahoma", Font.BOLD, 15));
+			bAdd.setFocusPainted(false);
+			bAdd.setBorder(new LineBorder(Color.DARK_GRAY, 1, true));
+			bAdd.setBackground(BUTTON_GREEN);
+
 			bAdd.setBounds(54, 349, 119, 30);
 		}
 		return bAdd;
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == getBAdd()) {
-			do_bAgregar_actionPerformed(e);
-		}
-		// TODO Auto-generated method stub
-		
-	}
 	public JButton getBModify() {
 		if (bModify == null) {
 			bModify = new JButton("Modificar");
-			bModify.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
+			bModify.setForeground(Color.WHITE);
+			bModify.setFont(new Font("Tahoma", Font.BOLD, 15));
+			bModify.setFocusPainted(false);
+			bModify.setBorder(new LineBorder(Color.DARK_GRAY, 1, true));
+			bModify.setBackground(BUTTON_GREEN);
+			
 			bModify.setBounds(187, 349, 119, 30);
 		}
 		return bModify;
@@ -154,7 +169,13 @@ public class GUI_Airplane extends JFrame implements ActionListener{
 	public JButton getBDelete() {
 		if (bDelete == null) {
 			bDelete = new JButton("Eliminar");
-			bDelete.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
+			bDelete.setForeground(Color.WHITE);
+			bDelete.setFont(new Font("Tahoma", Font.BOLD, 15));
+			bDelete.setFocusPainted(false);
+			bDelete.setBorder(new LineBorder(Color.DARK_GRAY, 1, true));
+			bDelete.setBackground(BUTTON_GREEN);
+			
 			bDelete.setBounds(187, 408, 119, 30);
 		}
 		return bDelete;
@@ -162,7 +183,13 @@ public class GUI_Airplane extends JFrame implements ActionListener{
 	public JButton getBConsult() {
 		if (bConsult == null) {
 			bConsult = new JButton("Consultar");
-			bConsult.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
+			bConsult.setForeground(Color.WHITE);
+			bConsult.setFont(new Font("Tahoma", Font.BOLD, 15));
+			bConsult.setFocusPainted(false);
+			bConsult.setBorder(new LineBorder(Color.DARK_GRAY, 1, true));
+			bConsult.setBackground(BUTTON_GREEN);
+			
 			bConsult.setBounds(316, 349, 119, 30);
 		}
 		return bConsult;
@@ -172,6 +199,7 @@ public class GUI_Airplane extends JFrame implements ActionListener{
 	public JLabel getLAirline() {
 		if (lAirline == null) {
 			lAirline = new JLabel("Aerolinea(s):");
+			lAirline.setForeground(new Color(255, 255, 255));
 			lAirline.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lAirline.setBounds(54, 133, 119, 45);
 		}
@@ -180,6 +208,7 @@ public class GUI_Airplane extends JFrame implements ActionListener{
 	public JLabel getLModels() {
 		if (lModels == null) {
 			lModels = new JLabel("Modelo(s): ");
+			lModels.setForeground(new Color(255, 255, 255));
 			lModels.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lModels.setBounds(54, 188, 193, 45);
 		}
@@ -188,6 +217,7 @@ public class GUI_Airplane extends JFrame implements ActionListener{
 	public JLabel getLYear() {
 		if (lYear == null) {
 			lYear = new JLabel("Año:");
+			lYear.setForeground(new Color(255, 255, 255));
 			lYear.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lYear.setBounds(54, 243, 193, 45);
 		}
@@ -196,28 +226,35 @@ public class GUI_Airplane extends JFrame implements ActionListener{
 	public JTextField getTxtYear() {
 		if (txtYear == null) {
 			txtYear = new JTextField();
+			txtYear.setBackground(new Color(41, 90, 45));
+			txtYear.setForeground(new Color(255, 255, 255));
 			txtYear.setColumns(10);
-			txtYear.setBounds(295, 243, 119, 45);
+			txtYear.setBounds(295, 250, 119, 38);
 		}
 		return txtYear;
 	}
 	public JComboBox getComboAirline() {
 		if (comboAirline == null) {
 			comboAirline = new JComboBox();
-			comboAirline.setBounds(295, 133, 119, 30);
+			comboAirline.setBackground(new Color(41, 90, 45));
+			comboAirline.setForeground(new Color(255, 255, 255));
+			comboAirline.setBounds(295, 142, 119, 30);
 		}
 		return comboAirline;
 	}
 	public JComboBox getComboModel() {
 		if (comboModel == null) {
 			comboModel = new JComboBox();
-			comboModel.setBounds(295, 188, 119, 30);
+			comboModel.setBackground(new Color(41, 90, 45));
+			comboModel.setForeground(new Color(255, 255, 255));
+			comboModel.setBounds(295, 197, 119, 30);
 		}
 		return comboModel;
 	}
 	public JLabel getLInfo() {
 		if (lInfo == null) {
 			lInfo = new JLabel("Información");
+			lInfo.setForeground(new Color(255, 255, 255));
 			lInfo.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lInfo.setBounds(638, 78, 187, 45);
 		}

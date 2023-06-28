@@ -28,6 +28,8 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Login extends JFrame {
 
@@ -401,6 +403,7 @@ public class Login extends JFrame {
 	public JButton getBLogin() {
 		if (bLogin == null) {
 			bLogin = new JButton("Iniciar sesión");
+			
 			bLogin.setForeground(Color.WHITE);
 			bLogin.setFont(new Font("Calibri", Font.BOLD, 17));
 			bLogin.setFocusPainted(false);

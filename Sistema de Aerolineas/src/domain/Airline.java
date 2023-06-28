@@ -41,7 +41,7 @@ public class Airline {
 
 	@Override
 	public String toString() {
-		return "Airline [name=" + name + ", operationCenter=" + operationCenter + "]";
+		return "\nAerolinea: " + name + "\nCentro de operaciones: " + operationCenter;
 	}
 	
 	

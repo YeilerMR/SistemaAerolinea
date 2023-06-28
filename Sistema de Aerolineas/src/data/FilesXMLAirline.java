@@ -29,6 +29,39 @@ public class FilesXMLAirline extends FilesXMLGlobal{
 	public FilesXMLAirline() {}
 	
 
+	public void deleteFromXMLAirline(String filePath, String elementType, String data) {
+		
+		try {
+			File file= new File(filePath);
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	        DocumentBuilder builder = factory.newDocumentBuilder();
+	        Document doc = builder.parse(file);
+	        
+	        NodeList nodes= doc.getElementsByTagName(elementType);
+	        for (int i = 0; i < nodes.getLength(); i++) {
+				Node node= nodes.item(i);
+				if (node.getNodeType() == Node.ELEMENT_NODE) {
+					Element element = (Element) node;
+					String userAttribute= element.getAttribute("name");
+					if(userAttribute.equalsIgnoreCase(data)) {
+						element.getParentNode().removeChild(element);
+						
+						TransformerFactory transformerFactory = TransformerFactory.newInstance();
+	                    Transformer transformer = transformerFactory.newTransformer();
+	                    DOMSource source = new DOMSource(doc);
+	                    StreamResult result = new StreamResult(file);
+	                    transformer.transform(source, result);
+	                    
+	                    //return true;
+					}
+				}
+			}
+	        //return false;
+		} catch (ParserConfigurationException | SAXException | IOException | TransformerException e) {
+			e.printStackTrace();
+			//return false;
+		}
+	}//fin de deleteModel
 	public void updateAirline(String fileName, String elementType, String[] dataName, String[] data, String nameChange) {
 		try {
 			File file= new File(fileName);

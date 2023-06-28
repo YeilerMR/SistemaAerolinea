@@ -1,4 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Compra>
-	<Compra nTicket="456" />
-</Compra>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Buy><Compra nTicket="345"><hourB>26/5/2023</hourB><dateB>23:49:26</dateB></Compra></Buy>

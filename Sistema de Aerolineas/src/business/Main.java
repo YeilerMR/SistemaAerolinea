@@ -1,7 +1,5 @@
 package business;
 
-import domain.User;
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -10,6 +8,7 @@ public class Main {
 		
 		new Controller();
 		
+		
 	}
-
+	
 }

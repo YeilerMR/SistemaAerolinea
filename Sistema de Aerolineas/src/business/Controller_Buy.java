@@ -53,6 +53,8 @@ public class Controller_Buy implements ActionListener{
 	}
 	private void confirmBuy() {
 		String dataTickets= ""+gui.getComboTicket().getSelectedItem();
+		String dataDate= gui.getLDate().getText();
+		String dataHour= gui.getLHour().getText();
 		int answer= gui.showConfirm(dataTickets);
 		
 		if (dataTickets.equals("Vacio")) {
@@ -60,7 +62,7 @@ public class Controller_Buy implements ActionListener{
 		}else {
 			switch (answer){
 			case 0: 
-				buy= new Buy(dataTickets);
+				buy= new Buy(dataTickets,dataDate,dataHour);
 				fXMLBuy.writeXML(nameFile, elementType, buy.getDataName(), buy.getData());
 				break;
 			case 2: 

@@ -132,7 +132,7 @@ public class Controller_Flight implements ActionListener{
 			fXMLFlight.isEmpty(""+dataClassB)||fXMLFlight.isEmpty(""+dataClassT)||fXMLFlight.isEmpty(""+dataClassE)) {
 			gui.showMessage("No puede dejar espacios en blancos.");
 		}else {
-			if (fXMLFlight.checkExists(nameFile, elementType, dataTXT)) {
+			if (fXMLFlight.checkExistsFlight(nameFile, elementType, dataTXT)) {
 				gui.showMessage("Ya existe un vuelo con esta matricula");
 			}else {
 				flight= new Flight(dataTXT,dataCityE,dataHourE, dataDateE,dataABox,dataCityA,dataHourA,dataDateA,dataClassB,dataClassT,dataClassE);

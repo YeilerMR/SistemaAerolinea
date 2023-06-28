@@ -85,7 +85,7 @@ public class Controller_Airplane implements ActionListener{
 			fXMLAirplane.isEmpty(dataMBox)||fXMLAirplane.isEmpty(dataYear)) {
 			gui.showMessage("No puede dejar ningun espacio en blanco");
 		}else {
-			if (fXMLAirplane.checkExists(nameFile, elementType, dataTXT)) {
+			if (fXMLAirplane.checkExistsAirplane(nameFile, elementType, dataTXT)) {
 				gui.showMessage("Ya existe un avion con esta matricula");
 			}else {
 				airplane= new Airplane(dataTXT,dataABox,dataMBox,dataYear);
@@ -107,10 +107,11 @@ public class Controller_Airplane implements ActionListener{
 			dataMBox.equalsIgnoreCase("Vacio")||fXMLAirplane.isEmpty(dataYear)) {
 			gui.showMessage("No puede dejar ningun espacio en blanco");
 		}else {
-			if(fXMLAirplane.checkExists(nameFile, elementType, dataTXT)) {
+			if(fXMLAirplane.checkExistsAirplane(nameFile, elementType, dataTXT)) {
 				airplane= new Airplane(dataTXT, dataABox, dataMBox, dataYear);
 				
 				fXMLAirplane.updateAirplane(nameFile, elementType, airplane.getDataName(), airplane.getData(), dataTXT);
+				gui.showMessage("Se modifico el avion ["+dataTXT+"] Correctamente");
 				gui.clearForm();
 			}else {
 				gui.showMessage("No hay un avion ["+dataTXT+"] registrado");
@@ -130,6 +131,7 @@ public class Controller_Airplane implements ActionListener{
 			arrayAirplanes= fXMLAirplane.readAirplane(arrayAirplanes, dataTXT);
 			fXMLAirplane.setDataMatrixAirplane(arrayAirplanes);
 			gui.getDTMAirplane().setDataVector(fXMLAirplane.getDataMatrixAirplane(), gui.getColumnsName());
+			
 			gui.clearForm();
 		}
 	}//fin de consultAirplane
@@ -141,8 +143,8 @@ public class Controller_Airplane implements ActionListener{
 			
 		}else {
 			//Falta validar que no esten registrado a algun VUELO!!
-			if (fXMLAirplane.checkExists(nameFile, elementType, dataTXT)) {
-				fXMLAirplane.deleteFromXML(nameFile, elementType, dataTXT);
+			if (fXMLAirplane.checkExistsAirplane(nameFile, elementType, dataTXT)) {
+				fXMLAirplane.deleteFromXMLAirplane(nameFile, elementType, dataTXT);
 				gui.showMessage("Se elimino el avion ["+dataTXT+"] Correctamente");
 				gui.clearForm();
 			}else {

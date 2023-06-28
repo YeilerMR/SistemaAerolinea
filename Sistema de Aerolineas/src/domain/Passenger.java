@@ -81,7 +81,7 @@ public class Passenger {
 
 	@Override
 	public String toString() {
-		return "Passenger [nPassport=" + nPassport + ", name=" + name + ", lastName=" + lastName + ", dateBirth="
-				+ dateBirth + ", email=" + email + ", phone=" + phone + "]";
+		return "\nNumero de Pasaporte: " + nPassport + "\nNombre: " + name + "\nApellido: " + lastName + "\nFecha de Nacimiento: "
+				+ dateBirth + "\nCorreo: " + email + "\nTelefono: " + phone;
 	}
 }//fin de passenger

@@ -71,7 +71,7 @@ public class Ticket {
 
 	@Override
 	public String toString() {
-		return "Tiquet [nTicket=" + nTicket + ", passport=" + passport + ", nFlight=" + nFlight + "]";
+		return "Numero de Tiquete: " + nTicket + "\nPasaporte: " + passport + "\nVuelo: " + nFlight;
 	}
 	
 	

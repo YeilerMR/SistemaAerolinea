@@ -1,10 +1,12 @@
 package presentation;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import data.LogicXML;
@@ -25,6 +27,9 @@ import javax.swing.JTable;
 
 public class GUI_Airline extends JFrame implements ActionListener{
 
+	private static final Color BUTTON_GREEN = new Color(35, 134, 54);
+	private static final Color BACKGROUND_COLOR = new Color(12, 16, 22);
+	
 	private JPanel contentPane;
 	private JLabel lNombre;
 	private JTextField txtNombre;
@@ -59,6 +64,9 @@ public class GUI_Airline extends JFrame implements ActionListener{
 		setBounds(100, 100, 1000, 421);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(Color.BLACK));
+		contentPane.setBackground(BACKGROUND_COLOR);
+		setLocationRelativeTo(null);
 
 		if (lXML.checkTypeUser(user)) {
 			
@@ -93,6 +101,7 @@ public class GUI_Airline extends JFrame implements ActionListener{
 	public JLabel getLNombre() {
 		if (lNombre == null) {
 			lNombre = new JLabel("Nombre: ");
+			lNombre.setForeground(new Color(255, 255, 255));
 			lNombre.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lNombre.setBounds(54, 78, 119, 45);
 		}
@@ -101,6 +110,9 @@ public class GUI_Airline extends JFrame implements ActionListener{
 	public JTextField getTxtNombre() {
 		if (txtNombre == null) {
 			txtNombre = new JTextField();
+			txtNombre.setBackground(new Color(41, 90, 45));
+			txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			txtNombre.setForeground(new Color(255, 255, 255));
 			txtNombre.setBounds(141, 80, 119, 45);
 			txtNombre.setColumns(10);
 		}
@@ -109,15 +121,22 @@ public class GUI_Airline extends JFrame implements ActionListener{
 	public JLabel getLGestionAirline() {
 		if (lGestionAirline == null) {
 			lGestionAirline = new JLabel("Gestion de Aerolineas");
-			lGestionAirline.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lGestionAirline.setBounds(141, 23, 187, 45);
+			lGestionAirline.setForeground(new Color(255, 255, 255));
+			lGestionAirline.setFont(new Font("Tahoma", Font.BOLD, 18));
+			lGestionAirline.setBounds(347, 10, 254, 61);
 		}
 		return lGestionAirline;
 	}
 	public JButton getBAdd() {
 		if (bAdd == null) {
 			bAdd = new JButton("Agregar");
-			bAdd.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
+			bAdd.setForeground(Color.WHITE);
+			bAdd.setFont(new Font("Tahoma", Font.BOLD, 15));
+			bAdd.setFocusPainted(false);
+			bAdd.setBorder(new LineBorder(Color.DARK_GRAY, 1, true));
+			bAdd.setBackground(BUTTON_GREEN);
+			
 			bAdd.setBounds(54, 285, 119, 30);
 		}
 		return bAdd;
@@ -131,7 +150,13 @@ public class GUI_Airline extends JFrame implements ActionListener{
 	public JButton getBModify() {
 		if (bModify == null) {
 			bModify = new JButton("Modificar");
-			bModify.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
+			bModify.setForeground(Color.WHITE);
+			bModify.setFont(new Font("Tahoma", Font.BOLD, 15));
+			bModify.setFocusPainted(false);
+			bModify.setBorder(new LineBorder(Color.DARK_GRAY, 1, true));
+			bModify.setBackground(BUTTON_GREEN);
+			
 			bModify.setBounds(187, 285, 119, 30);
 		}
 		return bModify;
@@ -139,7 +164,13 @@ public class GUI_Airline extends JFrame implements ActionListener{
 	public JButton getBDelete() {
 		if (bDelete == null) {
 			bDelete = new JButton("Eliminar");
-			bDelete.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
+			bDelete.setForeground(Color.WHITE);
+			bDelete.setFont(new Font("Tahoma", Font.BOLD, 15));
+			bDelete.setFocusPainted(false);
+			bDelete.setBorder(new LineBorder(Color.DARK_GRAY, 1, true));
+			bDelete.setBackground(BUTTON_GREEN);
+			
 			bDelete.setBounds(187, 344, 119, 30);
 		}
 		return bDelete;
@@ -147,7 +178,13 @@ public class GUI_Airline extends JFrame implements ActionListener{
 	public JButton getBConsult() {
 		if (bConsult == null) {
 			bConsult = new JButton("Consultar");
-			bConsult.setFont(new Font("Tahoma", Font.PLAIN, 15));
+
+			bConsult.setForeground(Color.WHITE);
+			bConsult.setFont(new Font("Tahoma", Font.BOLD, 15));
+			bConsult.setFocusPainted(false);
+			bConsult.setBorder(new LineBorder(Color.DARK_GRAY, 1, true));
+			bConsult.setBackground(BUTTON_GREEN);
+			
 			bConsult.setBounds(316, 285, 119, 30);
 		}
 		return bConsult;
@@ -155,6 +192,7 @@ public class GUI_Airline extends JFrame implements ActionListener{
 	public JLabel getLOperationCenters() {
 		if (lOperationCenters == null) {
 			lOperationCenters = new JLabel("Centro de Operaciones:");
+			lOperationCenters.setForeground(new Color(255, 255, 255));
 			lOperationCenters.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lOperationCenters.setBounds(54, 180, 179, 45);
 		}
@@ -163,6 +201,9 @@ public class GUI_Airline extends JFrame implements ActionListener{
 	public JTextField getTxtOperationCenter() {
 		if (txtOperationCenter == null) {
 			txtOperationCenter = new JTextField();
+			txtOperationCenter.setBackground(new Color(41, 90, 45));
+			txtOperationCenter.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			txtOperationCenter.setForeground(new Color(255, 255, 255));
 			txtOperationCenter.setColumns(10);
 			txtOperationCenter.setBounds(295, 180, 119, 45);
 		}
@@ -171,6 +212,7 @@ public class GUI_Airline extends JFrame implements ActionListener{
 	public JLabel getLNew() {
 		if (lNew == null) {
 			lNew = new JLabel("Nuevo: ");
+			lNew.setForeground(new Color(255, 255, 255));
 			lNew.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lNew.setBounds(281, 78, 119, 45);
 		}
@@ -179,6 +221,9 @@ public class GUI_Airline extends JFrame implements ActionListener{
 	public JTextField getTxtNew() {
 		if (txtNew == null) {
 			txtNew = new JTextField();
+			txtNew.setBackground(new Color(41, 90, 45));
+			txtNew.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			txtNew.setForeground(new Color(255, 255, 255));
 			txtNew.setColumns(10);
 			txtNew.setBounds(357, 78, 119, 45);
 		}
@@ -187,6 +232,7 @@ public class GUI_Airline extends JFrame implements ActionListener{
 	public JLabel getLInfo() {
 		if (lInfo == null) {
 			lInfo = new JLabel("Tabla de Informacion");
+			lInfo.setForeground(new Color(255, 255, 255));
 			lInfo.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lInfo.setBounds(657, 78, 187, 45);
 		}

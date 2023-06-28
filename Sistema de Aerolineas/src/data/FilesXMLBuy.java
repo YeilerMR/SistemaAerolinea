@@ -44,7 +44,9 @@ public ArrayList<Buy> readXMLToArrayList(String address, String elementType) {
 					
 					Element eElement = (Element) nNode;
 
-					buy= new Buy(eElement.getAttribute("nTicket"));
+					buy= new Buy(eElement.getAttribute("nTicket"),
+							eElement.getElementsByTagName("hourB").item(0).getTextContent(),
+							eElement.getElementsByTagName("dateB").item(0).getTextContent());
 
 					arrayBuys.add(buy);
 				}

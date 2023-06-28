@@ -29,6 +29,74 @@ public class FilesXMLAirplane extends FilesXMLGlobal{
 	private ArrayList<String> arrayAirplanes= new ArrayList<String>();
 	public FilesXMLAirplane() {}
 	
+	public void deleteFromXMLAirplane(String filePath, String elementType, String data) {
+		
+		try {
+			File file= new File(filePath);
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+	        DocumentBuilder builder = factory.newDocumentBuilder();
+	        Document doc = builder.parse(file);
+	        
+	        NodeList nodes= doc.getElementsByTagName(elementType);
+	        for (int i = 0; i < nodes.getLength(); i++) {
+				Node node= nodes.item(i);
+				if (node.getNodeType() == Node.ELEMENT_NODE) {
+					Element element = (Element) node;
+					String userAttribute= element.getAttribute("registration");
+					if(userAttribute.equalsIgnoreCase(data)) {
+						element.getParentNode().removeChild(element);
+						
+						TransformerFactory transformerFactory = TransformerFactory.newInstance();
+	                    Transformer transformer = transformerFactory.newTransformer();
+	                    DOMSource source = new DOMSource(doc);
+	                    StreamResult result = new StreamResult(file);
+	                    transformer.transform(source, result);
+	                    
+	                    //return true;
+					}
+				}
+			}
+	        //return false;
+		} catch (ParserConfigurationException | SAXException | IOException | TransformerException e) {
+			e.printStackTrace();
+			//return false;
+		}
+	}//fin de deleteModel
+	
+	public boolean checkExistsAirplane(String fileName,String elementType ,String name) {
+        try {
+        	System.out.println("Entro al metodo checkExists");
+            File inputFile = new File(fileName);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(inputFile);
+            
+            
+            doc.getDocumentElement().normalize();
+
+            NodeList nodeList = doc.getElementsByTagName(elementType);
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                	System.out.println("Entro al if del for");
+                    Element element = (Element) node;
+                    String userAttribute = element.getAttribute("registration");
+
+                    if (userAttribute.equalsIgnoreCase(name)) {
+                    	System.out.println("Si es igual a["+name+"]");
+                        return true;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }//Fin checkExist
+	
 	public void updateAirplane(String fileName, String elementType, String[] dataName, String[] data, String nameChange) {
 		try {
 			File file= new File(fileName);
@@ -41,11 +109,11 @@ public class FilesXMLAirplane extends FilesXMLGlobal{
 				Node node= nodes.item(i);
 				if (node.getNodeType()==Node.ELEMENT_NODE) {
 					Element element= (Element) node;
-					String userAttribute= element.getAttribute("name");
+					String userAttribute= element.getAttribute("registration");
 					System.out.println("\nupdateBrand: "+data[0]+"\nuserAttribute: "+userAttribute);
 					if (userAttribute.equalsIgnoreCase(nameChange)) {
 						//System.out.println("Si es igual a::"+data[0]);
-						element.setAttribute("name", data[0]);
+						element.setAttribute("registration", data[0]);
 						for (int j = 1; j < dataName.length; j++) {
 							NodeList childNodes= element.getElementsByTagName(dataName[j]);
 							Element childElement= (Element)childNodes.item(0); 

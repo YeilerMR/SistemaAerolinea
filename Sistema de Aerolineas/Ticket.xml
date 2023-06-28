@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Ticket>
-	<Tiquete nTicket="123">
-		<passport>123</passport>
-		<nFlight>547</nFlight>
+	<Tiquete nTicket="102938">
+		<passport>0987</passport>
+		<nFlight>258</nFlight>
 		<sType>Ejecutivo</sType>
 	</Tiquete>
-	<Tiquete nTicket="456">
-		<passport>123</passport>
-		<nFlight>547</nFlight>
+	<Tiquete nTicket="345">
+		<passport>1234</passport>
+		<nFlight>60</nFlight>
+		<sType>Turista</sType>
+	</Tiquete>
+	<Tiquete nTicket="17">
+		<passport>123456</passport>
+		<nFlight>597</nFlight>
 		<sType>Economico</sType>
 	</Tiquete>
 </Ticket>

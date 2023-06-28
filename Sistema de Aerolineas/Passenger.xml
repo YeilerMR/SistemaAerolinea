@@ -1,10 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><Passenger>
-	<Pasajero nPassport="123">
-		<name>Yeiler</name>
-		<lastName>Montes</lastName>
-		<dateBirth>17/12/97</dateBirth>
-		<email>yeiler@gmail.com</email>
-		<phone>27641147</phone>
-	</Pasajero>
-	
-</Passenger>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Passenger><Pasajero nPassport="123456"><name>Yeiler</name><lastName>Montes</lastName><dateBirth>17/12/97</dateBirth><email>yeiler@gmail.com</email><phone>88889999</phone></Pasajero><Pasajero nPassport="1234"><name>Keisi</name><lastName>Alvarez</lastName><dateBirth>15/09/11</dateBirth><email>keisi@gmail.com</email><phone>21213434</phone></Pasajero><Pasajero nPassport="0987"><name>Mario</name><lastName>Perez</lastName><dateBirth>12/05/87</dateBirth><email>mario@gmail.com</email><phone>78784545</phone></Pasajero></Passenger>

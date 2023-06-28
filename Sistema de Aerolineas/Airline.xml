@@ -1,12 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Airline>
-	<Aerolinea name="Emirates">
-		<operationC>Qatar</operationC>
-	</Aerolinea>
-	<Aerolinea name="KencirioA">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Airline>
+	<Aerolinea name="Skyway">
 		<operationC>San jose</operationC>
 	</Aerolinea>
-	<Aerolinea name="Atlas">
-		<operationC>Virginia</operationC>
+	<Aerolinea name="Sansa">
+		<operationC>Alajuela</operationC>
 	</Aerolinea>
-</Airline>
+	
+<Aerolinea name="Air Caribe"><operationC>Limon</operationC></Aerolinea></Airline>

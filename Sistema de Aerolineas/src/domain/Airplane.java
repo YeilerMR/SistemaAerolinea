@@ -65,8 +65,8 @@ public class Airplane {
 
 	@Override
 	public String toString() {
-		return "Airplane [registration=" + registration + ", arrayAirlines=" + arrayAirlines + ", arrayModels="
-				+ arrayModels + ", year=" + year + "]";
+		return "\nPlaca del Avion: " + registration + "\nAerolinea: " + arrayAirlines + "\nModelo: "
+				+ arrayModels + "\nAnnio: " + year ;
 	}
 	
 	//Falta el toString
